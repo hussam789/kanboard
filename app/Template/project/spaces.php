@@ -12,7 +12,7 @@
             <span  v-if="isFolder">[{{open ? '-' : '+'}}]</span>
             <span  v-on="click: editChild()">[edit]</span>
         </div>
-        <ul v-show="open" v-if="isFolder">
+        <ul v-show="open" v-if="isFolder" style="margin-left: 10px;">
             <li class="item"
                 v-repeat="model: model.children"
                 v-component="item">
