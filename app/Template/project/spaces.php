@@ -10,8 +10,7 @@
         <div id="myfold" v-class="bold: isFolder" v-on="click: toggle, dblclick: changeType">
             {{model.name}}
             <span  v-if="isFolder">[{{open ? '-' : '+'}}]</span>
-            <span  v-on="click: editChild()">[edit]</span>
-            <span  v-on="click: removeChild(model)">[remove]</span>
+            <span  v-on="click: editChild(model)">[edit]</span>
         </div>
         <ul v-show="open" v-if="isFolder" >
             <li class="item"

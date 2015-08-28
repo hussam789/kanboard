@@ -31,16 +31,12 @@ function Spaces() {
                     this.open = !this.open
                 }
             },
-            editChild: function () {
-                var name = prompt('Enter new name');
+            editChild: function (model) {
+                var name = prompt('Enter new name', model.name);
                 if (name != null && name != "") {
                     this.model.name = name;
                     //this.model.$remove(0);
                 }
-            },
-            removeChild: function (model) {
-                data.$remove(model);
-
             },
             changeType: function () {
                 if (!this.isFolder) {
