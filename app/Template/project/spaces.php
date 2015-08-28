@@ -24,12 +24,13 @@
 
     <!-- the demo root element -->
     <ul id="demo"
+        class="ul-spaces"
         data-project-id="<?= $project['id'] ?>"
         data-save-url="<?= $this->url->href('project', 'saveSpaces') ?>"
         data-get-url="<?= $this->url->href('project', 'getSpaces') ?>"
         data-spaces='<?= $spaces ?>'>
-        <li class="space-item"
-            v-component="space-item"
+        <li class="item"
+            v-component="item"
             v-with="model: treeData">
         </li>
     </ul>
