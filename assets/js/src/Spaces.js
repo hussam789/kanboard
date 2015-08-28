@@ -39,7 +39,7 @@ function Spaces() {
                 }
             },
             removeChild: function (model) {
-                this.model.$remove(model);
+                data.$remove(model);
 
             },
             changeType: function () {
