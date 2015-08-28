@@ -25,8 +25,8 @@
     <!-- the demo root element -->
     <ul id="demo"
         data-project-id="<?= $project['id'] ?>"
-        data-save-url="<?= $this->u('project', 'saveSpaces') ?>"
-        data-get-url="<?= $this->u('project', 'getSpaces') ?>"
+        data-save-url="<?= $this->url->href('project', 'saveSpaces') ?>"
+        data-get-url="<?= $this->url->href('project', 'getSpaces') ?>"
         data-spaces='<?= $spaces ?>'>
         <li class="item"
             v-component="item"
