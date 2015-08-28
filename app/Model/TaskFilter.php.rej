@@ -1,0 +1,12 @@
+diff a/app/Model/TaskFilter.php b/app/Model/TaskFilter.php	(rejected hunks)
+@@ -684,8 +684,8 @@ class TaskFilter extends Base
+     {
+         $bars = array();
+         $columns = array();
+-
+-        foreach ($this->query->findAll() as $task) {
++        // ikan
++        foreach ($this->taskFinder->getExtendedQuery() as $task) {
+             if (! isset($column_count[$task['project_id']])) {
+                 $columns[$task['project_id']] = $this->board->getColumnsList($task['project_id']);
+             }
