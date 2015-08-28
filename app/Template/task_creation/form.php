@@ -54,11 +54,11 @@
         <?= $this->form->label(t('Construction Trade'), 'category_id') ?>
         <?= $this->form->select('category_id', $categories_list, $values, $errors, array('tabindex="4"')) ?><br/>
         <!-- ikan -->
-        <?= $this->formLabel(t('Space'), 'spaces') ?>
-        <?= $this->formSelect('spaces', $spaces_list, $values, $errors) ?><br/>
+        <?= $this->form->label(t('Space'), 'spaces') ?>
+        <?= $this->form->select('spaces', $spaces_list, $values, $errors) ?><br/>
         <!-- ikan -->
-        <?= $this->formLabel(t('Materials (Comma separated)'), 'materials') ?>
-        <?= $this->formText('materials', $values, $errors) ?><br/>
+        <?= $this->form->label(t('Materials (Comma separated)'), 'materials') ?>
+        <?= $this->form->text('materials', $values, $errors) ?><br/>
         <!-- ikan -->
 <!--        --><?php //if (! (count($swimlanes_list) === 1 && key($swimlanes_list) === 0)): ?>
 <!--        --><?//= $this->form->label(t('Swimlane'), 'swimlane_id') ?>
