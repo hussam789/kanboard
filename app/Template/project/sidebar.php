@@ -21,8 +21,13 @@
             <li <?= $this->app->getRouterController() === 'swimlane' ? 'class="active"' : '' ?>>
                 <?= $this->url->link(t('Swimlanes'), 'swimlane', 'index', array('project_id' => $project['id'])) ?>
             </li>
+            <!-- ikan -->
             <li <?= $this->app->getRouterController() === 'category' ? 'class="active"' : '' ?>>
-                <?= $this->url->link(t('Categories'), 'category', 'index', array('project_id' => $project['id'])) ?>
+                <?= $this->url->link(t('Construction Trades'), 'category', 'index', array('project_id' => $project['id'])) ?>
+            </li>
+            <!-- ikan -->
+            <li <?= $this->app->getRouterController() === 'spaces' ? 'class="active"' : '' ?>>
+                <?= $this->url->link(t('Spaces'), 'spaces', 'index', array('project_id' => $project['id'])) ?>
             </li>
             <?php if ($this->user->isAdmin() || $project['is_private'] == 0): ?>
             <li <?= $this->app->getRouterController() === 'project' && $this->app->getRouterAction() === 'users' ? 'class="active"' : '' ?>>

@@ -25,11 +25,11 @@ class Board extends Base
         if (empty($project)) {
             $this->forbidden(true);
         }
-
+        // ikan getBoard
         // Display the board with a specific layout
         $this->response->html($this->template->layout('board/public_view', array(
             'project' => $project,
-            'swimlanes' => $this->board->getBoard($project['id']),
+            'swimlanes' => $this->board->getBoardByTradeSwimlanes($project['id']),
             'title' => $project['name'],
             'description' => $project['description'],
             'no_layout' => true,
@@ -48,11 +48,12 @@ class Board extends Base
     public function show()
     {
         $params = $this->getProjectFilters('board', 'show');
-
+        // ikan swimlanes becomes Categories
+        $swimlanes = $this->board->getBoardByTradeSwimlanes($params['project']['id']);
         $this->response->html($this->template->layout('board/private_view', array(
             'categories_list' => $this->category->getList($params['project']['id'], false),
             'users_list' => $this->projectPermission->getMemberList($params['project']['id'], false),
-            'swimlanes' => $this->taskFilter->search($params['filters']['search'])->getBoard($params['project']['id']),
+            'swimlanes' => $swimlanes,
             'description' => $params['project']['description'],
             'board_private_refresh_interval' => $this->config->get('board_private_refresh_interval'),
             'board_highlight_period' => $this->config->get('board_highlight_period'),
@@ -289,6 +290,47 @@ class Board extends Base
     }
 
     /**
+     * Change a task space directly from the board
+     * ikan
+     * @access public
+     */
+    public function changeSpace()
+    {
+        $task = $this->getTask();
+        $project = $this->project->getById($task['project_id']);
+        $new_array = array();
+
+        $this->taskFinder->recursive(json_decode($this->project->getSpaces($project['id']), true), 0, $new_array, "");
+
+        $this->response->html($this->template->render('board/space', array(
+            'values' => $task,
+            'spaces' => array_combine($new_array, $new_array),
+            'project' => $project,
+        )));
+    }
+
+    /**
+     * Validate a space modification
+     * ikan
+     * @access public
+     */
+    public function updateSpace()
+    {
+        $values = $this->request->getValues();
+
+        list($valid,) = $this->taskValidator->validateCategoryModification($values);
+
+        if ($valid && $this->taskModification->update($values)) {
+            $this->session->flash(t('Task updated successfully.'));
+        }
+        else {
+            $this->session->flashError(t('Unable to update your task.'));
+        }
+
+        $this->response->redirect('?controller=board&action=show&project_id='.$values['project_id']);
+    }
+
+    /**
      * Screenshot popover
      *
      * @access public
@@ -367,7 +409,7 @@ class Board extends Base
     {
         return $this->template->render('board/table_container', array(
             'project' => $this->project->getById($project_id),
-            'swimlanes' => $this->taskFilter->search($this->userSession->getFilters($project_id))->getBoard($project_id),
+            'swimlanes' => $this->board->getBoardByTradeSwimlanes($project_id),
             'board_private_refresh_interval' => $this->config->get('board_private_refresh_interval'),
             'board_highlight_period' => $this->config->get('board_highlight_period'),
         ));

@@ -31,6 +31,11 @@ class Taskcreation extends Base
                 'another_task' => $this->request->getIntegerParam('another_task'),
             );
         }
+        //ikan
+        $new_array = array();
+        $this->taskFinder->recursive(json_decode($this->project->getSpaces($project['id']), true), 0, $new_array, "");
+        $new_array[self::ALL_SPACES] = self::ALL_SPACES;
+        $category = array($values['swimlane_id'] => $this->category->getNameById($values['swimlane_id']));
 
         $this->response->html($this->template->$method('task_creation/form', array(
             'ajax' => $this->request->isAjax(),
@@ -39,7 +44,10 @@ class Taskcreation extends Base
             'columns_list' => $this->board->getColumnsList($project['id']),
             'users_list' => $this->projectPermission->getMemberList($project['id'], true, false, true),
             'colors_list' => $this->color->getList(),
-            'categories_list' => $this->category->getList($project['id']),
+            // ikan
+            'spaces_list' => array_combine($new_array, $new_array),
+            // ikan
+            'categories_list' => $category,
             'swimlanes_list' => $swimlanes_list,
             'date_format' => $this->config->get('application_date_format'),
             'date_formats' => $this->dateParser->getAvailableFormats(),
@@ -60,8 +68,35 @@ class Taskcreation extends Base
         list($valid, $errors) = $this->taskValidator->validateCreation($values);
 
         if ($valid) {
+            // ikan
+            if ($values['spaces'] == self::ALL_SPACES) {
 
-            if ($this->taskCreation->create($values)) {
+                $space_list = array();
+                $this->taskFinder->recursive(json_decode($this->project->getSpaces($project['id']), true), 0, $space_list, "");
+                if (count($space_list) == 0) {
+                    $this->createSingleTask($values, $project);
+                } else {
+                    $output = print_r($space_list,1);
+                    error_log($output);
+                    foreach ($space_list as $space_name) {
+                        $values['spaces'] = $space_name;
+                        $temp_title = $values['title'];
+                        $values['title'] .= ' - ' . str_replace('_', '', $space_name);
+                        $this->createSingleTask($values, $project);
+                        $values['title'] = $temp_title;
+                    }
+                }
+            } else
+                $this->createSingleTask($values, $project);
+            if (isset($values['another_task']) && $values['another_task'] == 1) {
+                unset($values['title']);
+                unset($values['description']);
+                $this->response->redirect($this->helper->url->to('taskcreation', 'create', $values));
+            }
+            else {
+                $this->response->redirect($this->helper->url->to('board', 'show', array('project_id' => $project['id'])));
+            }
+            /*if ($this->taskCreation->create($values)) {
                 $this->session->flash(t('Task created successfully.'));
 
                 if (isset($values['another_task']) && $values['another_task'] == 1) {
@@ -75,9 +110,72 @@ class Taskcreation extends Base
             }
             else {
                 $this->session->flashError(t('Unable to create your task.'));
-            }
+            }*/
         }
 
         $this->create($values, $errors);
+    }
+
+    /**
+     * @param $values
+     * @param $project
+     * @return mixed
+     * ikan
+     */
+    private function createSingleTask($values, $project)
+    {
+        if (!empty($values['materials'])) {
+            // Material Category
+            global $materialCatId;
+            $materialCatId = $this->category->getIdByName($values['project_id'], 'Materials');
+            if ($materialCatId == 0 ) {
+                // if not exist create Material Category
+                $materialCatId = (int) $this->category->create(array(
+                    'project_id' => $values['project_id'],
+                    'name' => 'Materials',
+                ));
+            }
+            // Create Material Task
+            $materialTaskValues = array(
+                'title' => 'Materials - ' . $values['title'],
+                'project_id' => $values['project_id'],
+                'color_id' => '',
+                'column_id' => 0,
+                'owner_id' => 0,
+                'creator_id' => $values['creator_id'],
+                'date_due' => '',
+                'description' => '',
+                'category_id' => $materialCatId,
+                'spaces' => $values['spaces'],
+                'score' => 0,
+                'swimlane_id' => $values['swimlane_id'],
+            );
+            $materialTaskId = $this->taskCreation->create($materialTaskValues);
+            // Create Materials subtasks
+            $materials = explode(',', $values['materials']);
+            foreach ($materials as $key => $val) {
+
+                $subTask = array(
+                    'title' => trim($val),
+                    'task_id' => $materialTaskId,
+                    'user_id' => 0,
+                    'time_estimated' => 0,
+                    'time_spent' => 0,
+                    'status' => 0,
+                );
+                $this->subtask->create($subTask);
+            }
+        }
+        unset($values['materials']);
+        $originalTask = $this->taskCreation->create($values);
+        if ($originalTask) {
+            // link material task with original task
+            $this->taskLink->create($materialTaskId, $originalTask, 9);
+            $this->session->flash(t('Task created successfully.'));
+            return true;
+        } else {
+            $this->session->flashError(t('Unable to create your task.'));
+            return false;
+        }
     }
 }

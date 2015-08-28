@@ -114,6 +114,22 @@ class Project extends Base
         )));
     }
 
+    public function saveSpaces()
+    {
+        // ikan
+        $values = $this->request->getJson();
+        $project_id = $values['project_id'];
+
+        if ($this->project->updateSpaces($project_id, $values['spaces'])) {
+            $this->session->flash(t('Spaces updated successfully.'));
+        }
+        else {
+            $this->session->flashError(t('Unable to update space hierarchy.'));
+        }
+        $this->response->redirect('?controller=spaces&action=index');
+    }
+
+
     /**
      * Display a form to edit a project
      *

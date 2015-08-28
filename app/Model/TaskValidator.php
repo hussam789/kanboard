@@ -89,6 +89,30 @@ class TaskValidator extends Base
     }
 
     /**
+     * Validate space change
+     * ikan
+     * @access public
+     * @param  array   $values           Form values
+     * @return array   $valid, $errors   [0] = Success or not, [1] = List of errors
+     */
+    public function validateSpaceModification(array $values)
+    {
+        $rules = array(
+            new Validators\Required('id', t('The id is required')),
+            new Validators\Required('project_id', t('The project is required')),
+            new Validators\Required('spaces', t('This value is required')),
+
+        );
+
+        $v = new Validator($values, array_merge($rules, $this->commonValidationRules()));
+
+        return array(
+            $v->execute(),
+            $v->getErrors()
+        );
+    }
+
+    /**
      * Validate edit recurrence
      *
      * @access public

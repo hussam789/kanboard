@@ -209,7 +209,10 @@ class Response
      */
     public function csp(array $policies = array())
     {
-        $policies['default-src'] = "'self'";
+        // ikan
+        $policies['default-src'] = "'unsafe-eval' http://localhost:8888/kan/assets";
+        $policies['font-src'] = "*";
+        $policies['script-src'] = "'unsafe-inline'";
         $values = '';
 
         foreach ($policies as $policy => $acl) {

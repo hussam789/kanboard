@@ -4,6 +4,7 @@ function App() {
     this.sidebar = new Sidebar();
     this.search = new Search(this);
     this.swimlane = new Swimlane();
+    this.spaces = new Spaces();
     this.dropdown = new Dropdown();
     this.tooltip = new Tooltip(this);
     this.popover = new Popover(this);

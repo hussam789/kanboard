@@ -6,7 +6,32 @@ use PDO;
 use Core\Security;
 use Model\Link;
 
-const VERSION = 65;
+const VERSION = 66;
+
+function version_66($pdo)
+{
+    // ikan
+    $pdo->exec('TRUNCATE TABLE links');
+    // ikan
+    $rq = $pdo->prepare('INSERT INTO links (label, opposite_id) VALUES (?, ?)');
+    $rq->execute(array('relates to', 0));
+    $rq->execute(array('(FS)Finish it before staring', 3));
+    $rq->execute(array('(FS)Start it after finishing', 2));
+    $rq->execute(array('(SS)Start it before starting', 5));
+    $rq->execute(array('(SS)Start it after starting', 4));
+    $rq->execute(array('(FF)Finish it before finishing', 7));
+    $rq->execute(array('FF)Finish it after finishing', 6));
+    $rq->execute(array('Material Provided By', 9));
+    $rq->execute(array('Provides Materials to', 8));
+    $rq->execute(array('is a child of', 10));
+    $rq->execute(array('is a parent of', 11));
+    $rq->execute(array('fixes', 13));
+    $rq->execute(array('is fixed by', 12));
+    // ikan
+    $pdo->exec("ALTER TABLE projects ADD COLUMN spaces TEXT");
+    // ikan
+    $pdo->exec('ALTER TABLE tasks ADD COLUMN spaces TEXT');
+}
 
 function version_65($pdo)
 {

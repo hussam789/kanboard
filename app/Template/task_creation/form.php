@@ -51,13 +51,19 @@
         <?= $this->form->label(t('Assignee'), 'owner_id') ?>
         <?= $this->form->select('owner_id', $users_list, $values, $errors, array('tabindex="3"')) ?><br/>
 
-        <?= $this->form->label(t('Category'), 'category_id') ?>
+        <?= $this->form->label(t('Construction Trade'), 'category_id') ?>
         <?= $this->form->select('category_id', $categories_list, $values, $errors, array('tabindex="4"')) ?><br/>
-
-        <?php if (! (count($swimlanes_list) === 1 && key($swimlanes_list) === 0)): ?>
-        <?= $this->form->label(t('Swimlane'), 'swimlane_id') ?>
-        <?= $this->form->select('swimlane_id', $swimlanes_list, $values, $errors, array('tabindex="5"')) ?><br/>
-        <?php endif ?>
+        <!-- ikan -->
+        <?= $this->formLabel(t('Space'), 'spaces') ?>
+        <?= $this->formSelect('spaces', $spaces_list, $values, $errors) ?><br/>
+        <!-- ikan -->
+        <?= $this->formLabel(t('Materials (Comma separated)'), 'materials') ?>
+        <?= $this->formText('materials', $values, $errors) ?><br/>
+        <!-- ikan -->
+<!--        --><?php //if (! (count($swimlanes_list) === 1 && key($swimlanes_list) === 0)): ?>
+<!--        --><?//= $this->form->label(t('Swimlane'), 'swimlane_id') ?>
+<!--        --><?//= $this->form->select('swimlane_id', $swimlanes_list, $values, $errors, array('tabindex="5"')) ?><!--<br/>-->
+<!--        --><?php //endif ?>
 
         <?= $this->form->label(t('Column'), 'column_id') ?>
         <?= $this->form->select('column_id', $columns_list, $values, $errors, array('tabindex="6"')) ?><br/>

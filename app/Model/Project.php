@@ -91,6 +91,29 @@ class Project extends Base
         return $this->db->table(self::TABLE)->eq('token', $token)->eq('is_public', 1)->findOne();
     }
 
+    public function getSpaces($project_id)
+    {
+        // ikan
+        return $this->db->table(self::TABLE)->eq('id', $project_id)->findOneColumn('spaces') ?: '';
+    }
+
+    /**
+     * Update spaces
+     *
+     * @access public
+     * @param  integer   $project_id    Project id
+     * @param  string   $spaces    Spaces
+     * @return bool
+     */
+    public function updateSpaces($project_id, $spaces)
+    {
+
+        // ikan
+        return $this->db->table(self::TABLE)->eq('id', $project_id)->update(array(
+            'spaces' => $spaces
+        ));
+    }
+
     /**
      * Return the first project from the database (no sorting)
      *

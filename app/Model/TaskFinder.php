@@ -106,6 +106,8 @@ class TaskFinder extends Base
                 'tasks.color_id',
                 'tasks.project_id',
                 'tasks.column_id',
+                // ikan
+                'tasks.spaces',
                 'tasks.swimlane_id',
                 'tasks.owner_id',
                 'tasks.creator_id',
@@ -136,6 +138,30 @@ class TaskFinder extends Base
             ->join(Board::TABLE, 'id', 'column_id', Task::TABLE)
             ->join(Swimlane::TABLE, 'id', 'swimlane_id', Task::TABLE)
             ->join(Project::TABLE, 'id', 'project_id', Task::TABLE);
+    }
+
+    function recursive($array, $level = 1, &$new_array, $path){
+        // ikan
+        if (empty($array)) {
+            return;
+        }
+        foreach($array as $key => $value){
+            //If $value is an array.
+            if(is_array($value)){
+                //We need to loop through it.
+                //if (!is_numeric($key))
+                //echo str_repeat("_", $level), $key, '<br>';
+                if (is_numeric($key)) {
+                    $path .= $key . ".";
+                }
+                $this->recursive($value, $level + 1, $new_array, $path);
+            } else {
+                //It is not an array, so print it out.
+                //echo str_repeat("_", $level), $value, '<br>';
+                $new_array[$path . $value] = str_repeat("_", $level) . $value;
+                //array_push($new_array, str_repeat("_", $level) . $value);
+            }
+        }
     }
 
     /**
@@ -218,6 +244,18 @@ class TaskFinder extends Base
         return (int) $this->db->table(Task::TABLE)->eq('id', $task_id)->findOneColumn('project_id') ?: 0;
     }
 
+    // ikan
+    public function getTasksByColumnAndCategory($project_id, $column_id, $category_id)
+    {
+        return $this->getExtendedQuery()
+            ->eq('project_id', $project_id)
+            ->eq('column_id', $column_id)
+            ->eq('category_id', $category_id)
+            ->eq('is_active', Task::STATUS_OPEN)
+            ->asc('tasks.position')
+            ->findAll();
+    }
+
     /**
      * Fetch a task by the id
      *
@@ -252,6 +290,7 @@ class TaskFinder extends Base
      */
     public function getDetails($task_id)
     {
+        // ikan: add spaces
         $sql = '
             SELECT
             tasks.id,
@@ -272,6 +311,7 @@ class TaskFinder extends Base
             tasks.creator_id,
             tasks.position,
             tasks.is_active,
+            tasks.spaces,
             tasks.score,
             tasks.category_id,
             tasks.swimlane_id,

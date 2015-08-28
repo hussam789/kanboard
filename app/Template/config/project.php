@@ -13,9 +13,10 @@
     <?= $this->form->text('board_columns', $values, $errors) ?><br/>
     <p class="form-help"><?= t('Default values are "%s"', $default_columns) ?></p>
 
-    <?= $this->form->label(t('Default categories for new projects (Comma-separated)'), 'project_categories') ?>
-    <?= $this->form->text('project_categories', $values, $errors) ?><br/>
-    <p class="form-help"><?= t('Example: "Bug, Feature Request, Improvement"') ?></p>
+    <!-- ikan -->
+    <?= $this->formLabel(t('Default Construction Trades for new projects (Comma-separated)'), 'project_categories') ?>
+    <?= $this->formText('project_categories', $values, $errors) ?><br/>
+    <p class="form-help"><?= t('Example: "Painting, Concrete Work, Flooring"') ?></p>
 
     <?= $this->form->checkbox('subtask_restriction', t('Allow only one subtask in progress at the same time for a user'), 1, $values['subtask_restriction'] == 1) ?>
     <?= $this->form->checkbox('subtask_time_tracking', t('Trigger automatically subtask time tracking'), 1, $values['subtask_time_tracking'] == 1) ?>

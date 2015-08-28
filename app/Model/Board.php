@@ -28,7 +28,8 @@ class Board extends Base
      */
     public function getDefaultColumns()
     {
-        return array(t('Backlog'), t('Ready'), t('Work in progress'), t('Done'));
+        //ikan
+        return array(t('ToDo'), t('Work in progress'), t('Done'), t('Cancelled'));
     }
 
     /**
@@ -266,6 +267,33 @@ class Board extends Base
         }
 
         return $swimlanes;
+    }
+
+    // ikan
+    public function getBoardByTradeSwimlanes($project_id)
+    {
+        $trades = $this->category->getAll($project_id);
+        $columns = $this->getColumns($project_id);
+        $nb_columns = count($columns);
+
+        for ($i = 0, $ilen = count($trades); $i < $ilen; $i++) {
+//            if ($i == $ilen) {
+//                $trades[$i]['id'] = 0;
+//                $trades[$i]['name'] = 'General';
+//            }
+
+            $trades[$i]['columns'] = $columns;
+            $trades[$i]['nb_columns'] = $nb_columns;
+            $trades[$i]['nb_tasks'] = 0;
+
+            for ($j = 0; $j < $nb_columns; $j++) {
+                $trades[$i]['columns'][$j]['tasks'] = $this->taskFinder->getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id']);
+                $trades[$i]['columns'][$j]['nb_tasks'] = count($trades[$i]['columns'][$j]['tasks']);
+                $trades[$i]['nb_tasks'] += $trades[$i]['columns'][$j]['nb_tasks'];
+            }
+        }
+
+        return $trades;
     }
 
     /**

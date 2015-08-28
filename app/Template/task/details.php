@@ -68,10 +68,17 @@
             <?= dt('since %B %e, %Y at %k:%M %p', $task['date_moved']) ?>
         </li>
         <li><?= t('Task position:').' '.$this->e($task['position']) ?></li>
+        <!-- ikan -->
         <?php if ($task['category_name']): ?>
         <li>
-            <?= t('Category:') ?> <strong><?= $this->e($task['category_name']) ?></strong>
+            <?= t('Construction Trade:') ?> <strong><?= $this->e($task['category_name']) ?></strong>
         </li>
+        <?php endif ?>
+        <!-- ikan -->
+        <?php if ($task['spaces']): ?>
+            <li>
+                <?= t('Space:') ?> <strong><?= $this->e(str_replace('_', '', $task['spaces'])) ?></strong>
+            </li>
         <?php endif ?>
         <li>
             <?php if ($task['is_active'] == 1): ?>
