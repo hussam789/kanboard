@@ -1,37 +1,41 @@
 <?php /*if (! empty($task['category_id'])): */?>
 <div class="task-board-category-container">
     <!-- ikan -->
-    <?php if (! empty($task['category_id'])): ?>
-        <?php if ($not_editable): ?>
-            <?= $this->e($task['category_name']) ?>
-        <?php else: ?>
-            <?= $this->url->link(
-                $this->e($task['category_name']),
-                'board',
-                'changeCategory',
-                array('task_id' => $task['id'], 'project_id' => $task['project_id']),
-                false,
-                'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
-                ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change category')
-            ) ?>
+     <span class="task-board-category">
+        <?php if (! empty($task['category_id'])): ?>
+            <?php if ($not_editable): ?>
+                <?= $this->e($task['category_name']) ?>
+            <?php else: ?>
+                <?= $this->url->link(
+                    $this->e($task['category_name']),
+                    'board',
+                    'changeCategory',
+                    array('task_id' => $task['id'], 'project_id' => $task['project_id']),
+                    false,
+                    'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
+                    ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change category')
+                ) ?>
+            <?php endif ?>
         <?php endif ?>
-    <?php endif ?>
+     </span>
     <!-- ikan -->
-    <?php if (! empty($task['spaces'])): ?>
-        <?php if ($not_editable): ?>
-            <?= $this->e(str_replace('_', '', $task['spaces'])) ?>
-        <?php else: ?>
-            <?= $this->url->link(
-                str_replace('_', '', $task['spaces']),
-                'board',
-                'changeSpace',
-                array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'space' => $task['spaces']),
-                false,
-                'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
-                ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change space')
-            ) ?>
+    <span class="task-board-category">
+        <?php if (! empty($task['spaces'])): ?>
+            <?php if ($not_editable): ?>
+                <?= $this->e(str_replace('_', '', $task['spaces'])) ?>
+            <?php else: ?>
+                <?= $this->url->link(
+                    str_replace('_', '', $task['spaces']),
+                    'board',
+                    'changeSpace',
+                    array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'space' => $task['spaces']),
+                    false,
+                    'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
+                    ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change space')
+                ) ?>
+            <?php endif ?>
         <?php endif ?>
-    <?php endif ?>
+    </span>
     <?php /*if ($task['spaces']): */?><!--
         <span class="task-board-category">
             <?/*= $this->a(
@@ -94,9 +98,9 @@
         <span class="task-time-estimated" title="<?= t('Time estimated') ?>"><?= $this->e($task['time_estimated']).'h' ?></span>
     <?php endif ?>
 
-    <?php if ($task['is_milestone'] == 1): ?>
-        <span title="<?= t('Milestone') ?>">
-            <i class="fa fa-flag flag-milestone"></i>
-        </span>
-    <?php endif ?>
+<!--    --><?php //if ($task['is_milestone'] == 1): ?>
+<!--        <span title="--><?//= t('Milestone') ?><!--">-->
+<!--            <i class="fa fa-flag flag-milestone"></i>-->
+<!--        </span>-->
+<!--    --><?php //endif ?>
 </div>

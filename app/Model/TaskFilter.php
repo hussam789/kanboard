@@ -697,7 +697,7 @@ class TaskFilter extends Base
             $bars[] = array(
                 'type' => 'task',
                 'id' => $task['id'],
-                'title' => $task['title'],
+                'title' => $task['title'] . ' (' . $task['spaces'] .')',
                 'start' => array(
                     (int) date('Y', $start),
                     (int) date('n', $start),
