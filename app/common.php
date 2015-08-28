@@ -83,6 +83,9 @@ if (ENABLE_URL_REWRITE) {
     $container['router']->addRoute('project/:project_id/category/:category_id/edit', 'category', 'edit', array('project_id', 'category_id'));
     $container['router']->addRoute('project/:project_id/category/:category_id/confirm', 'category', 'confirm', array('project_id', 'category_id'));
 
+    // Spaces routes
+    $container['router']->addRoute('project/:project_id/spaces', 'spaces', 'index', array('project_id'));
+
     // Task routes
     $container['router']->addRoute('project/:project_id/task/:task_id', 'task', 'show', array('project_id', 'task_id'));
     $container['router']->addRoute('t/:task_id', 'task', 'show', array('task_id'));

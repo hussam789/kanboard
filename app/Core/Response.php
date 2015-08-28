@@ -218,8 +218,8 @@ class Response
         foreach ($policies as $policy => $acl) {
             $values .= $policy.' '.trim($acl).'; ';
         }
-
-        header('Content-Security-Policy: '.$values);
+        // ikan
+        //header('Content-Security-Policy: '.$values);
     }
 
     /**
