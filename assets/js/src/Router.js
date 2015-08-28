@@ -32,6 +32,7 @@ jQuery(document).ready(function() {
     router.addRoute('analytic-task-time-column', TaskTimeColumnChart);
     router.addRoute('analytic-lead-cycle-time', LeadCycleTimeChart);
     router.addRoute('gantt-chart', Gantt);
+    router.addRoute('demo', Spaces);
     router.dispatch(app);
     app.listen();
 });
