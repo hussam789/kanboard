@@ -40,8 +40,8 @@ function Spaces() {
             },
             removeChild: function () {
                     //this.model.name = name;
-                    this.model.$remove(0);
-                
+                demo.items.$remove(this.model.name);
+
             },
             changeType: function () {
                 if (!this.isFolder) {
