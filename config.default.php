@@ -5,7 +5,7 @@
 /*******************************************************************/
 
 // Enable/Disable debug
-define('DEBUG', false);
+define('DEBUG', true);
 
 // Debug file path
 define('DEBUG_FILE', __DIR__.'/data/debug.log');

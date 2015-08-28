@@ -1,7 +1,7 @@
 <?php
 
 // Enable/disable debug
-defined('DEBUG') or define('DEBUG', false);
+defined('DEBUG') or define('DEBUG', true);
 defined('DEBUG_FILE') or define('DEBUG_FILE', __DIR__.'/../data/debug.log');
 
 // Application version
