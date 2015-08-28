@@ -11,21 +11,6 @@ const VERSION = 66;
 function version_66($pdo)
 {
     // ikan
-    $rq = $pdo->prepare('INSERT INTO links (label, opposite_id) VALUES (?, ?)');
-    $rq->execute(array('relates to', 0));
-    $rq->execute(array('(FS)Finish it before staring', 3));
-    $rq->execute(array('(FS)Start it after finishing', 2));
-    $rq->execute(array('(SS)Start it before starting', 5));
-    $rq->execute(array('(SS)Start it after starting', 4));
-    $rq->execute(array('(FF)Finish it before finishing', 7));
-    $rq->execute(array('FF)Finish it after finishing', 6));
-    $rq->execute(array('Material Provided By', 9));
-    $rq->execute(array('Provides Materials to', 8));
-    $rq->execute(array('is a child of', 10));
-    $rq->execute(array('is a parent of', 11));
-    $rq->execute(array('fixes', 13));
-    $rq->execute(array('is fixed by', 12));
-    // ikan
     $pdo->exec("ALTER TABLE projects ADD COLUMN spaces TEXT");
     // ikan
     $pdo->exec('ALTER TABLE tasks ADD COLUMN spaces TEXT');
@@ -445,18 +430,21 @@ function version_27($pdo)
     $pdo->exec("CREATE INDEX task_has_links_task_index ON task_has_links(task_id)");
     $pdo->exec("CREATE UNIQUE INDEX task_has_links_unique ON task_has_links(link_id, task_id, opposite_task_id)");
 
+    // ikan
     $rq = $pdo->prepare('INSERT INTO links (label, opposite_id) VALUES (?, ?)');
     $rq->execute(array('relates to', 0));
-    $rq->execute(array('blocks', 3));
-    $rq->execute(array('is blocked by', 2));
-    $rq->execute(array('duplicates', 5));
-    $rq->execute(array('is duplicated by', 4));
-    $rq->execute(array('is a child of', 7));
-    $rq->execute(array('is a parent of', 6));
-    $rq->execute(array('targets milestone', 9));
-    $rq->execute(array('is a milestone of', 8));
-    $rq->execute(array('fixes', 11));
-    $rq->execute(array('is fixed by', 10));
+    $rq->execute(array('(FS)Finish it before staring', 3));
+    $rq->execute(array('(FS)Start it after finishing', 2));
+    $rq->execute(array('(SS)Start it before starting', 5));
+    $rq->execute(array('(SS)Start it after starting', 4));
+    $rq->execute(array('(FF)Finish it before finishing', 7));
+    $rq->execute(array('FF)Finish it after finishing', 6));
+    $rq->execute(array('Material Provided By', 9));
+    $rq->execute(array('Provides Materials to', 8));
+    $rq->execute(array('is a child of', 10));
+    $rq->execute(array('is a parent of', 11));
+    $rq->execute(array('fixes', 13));
+    $rq->execute(array('is fixed by', 12));
 }
 
 function version_26($pdo)
