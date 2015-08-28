@@ -38,6 +38,13 @@ function Spaces() {
                     //this.model.$remove(0);
                 }
             },
+            removeChild: function () {
+                var name = prompt('Enter new name');
+                if (name != null && name != "") {
+                    //this.model.name = name;
+                    this.model.$remove(0);
+                }
+            },
             changeType: function () {
                 if (!this.isFolder) {
                     this.model.$add('children', [])
