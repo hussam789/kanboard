@@ -248,10 +248,10 @@ class TaskFinder extends Base
     public function getTasksByColumnAndCategory($project_id, $column_id, $category_id)
     {
         return $this->getExtendedQuery()
-            ->eq('tasks.project_id', $project_id)
-            ->eq('column_id', $column_id)
-            ->eq('category_id', $category_id)
-            ->eq('is_active', Task::STATUS_OPEN)
+            ->eq(Task::TABLE.'.project_id', $project_id)
+            ->eq(Task::TABLE.'.column_id', $column_id)
+            ->eq(Task::TABLE.'.category_id', $category_id)
+            ->eq(Task::TABLE.'.is_active', Task::STATUS_OPEN)
             ->asc('tasks.position')
             ->findAll();
     }
