@@ -10,6 +10,8 @@ namespace Controller;
  */
 class Taskcreation extends Base
 {
+    // ikan
+    const ALL_SPACES = 'All Spaces';
     /**
      * Display a form to create a new task
      *
