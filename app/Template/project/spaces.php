@@ -29,7 +29,7 @@
         data-get-url="<?= $this->url->href('project', 'getSpaces') ?>"
         data-spaces='<?= $spaces ?>'>
         <li class="space-item"
-            v-component="item"
+            v-component="space-item"
             v-with="model: treeData">
         </li>
     </ul>
