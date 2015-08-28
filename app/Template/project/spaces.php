@@ -24,6 +24,7 @@
 
     <!-- the demo root element -->
     <ul id="demo"
+        style="margin-left: 10px;"
         class="ul-spaces"
         data-project-id="<?= $project['id'] ?>"
         data-save-url="<?= $this->url->href('project', 'saveSpaces') ?>"
