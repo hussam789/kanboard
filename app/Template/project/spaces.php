@@ -11,7 +11,7 @@
             {{model.name}}
             <span  v-if="isFolder">[{{open ? '-' : '+'}}]</span>
             <span  v-on="click: editChild()">[edit]</span>
-            <span  v-on="click: removeChild()">[remove]</span>
+            <span  v-on="click: removeChild(model)">[remove]</span>
         </div>
         <ul v-show="open" v-if="isFolder" >
             <li class="item"

@@ -38,9 +38,8 @@ function Spaces() {
                     //this.model.$remove(0);
                 }
             },
-            removeChild: function () {
-                    //this.model.name = name;
-                demo.items.$remove(this.model.name);
+            removeChild: function (model) {
+                this.model.$remove(model);
 
             },
             changeType: function () {
