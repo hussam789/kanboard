@@ -10,7 +10,7 @@ function Spaces() {
 
     console.log('spaces:' + data);
 // define the item component
-    Vue.component('item', {
+    Vue.component('space-item', {
         template: '#item-template',
         data: function () {
             return {

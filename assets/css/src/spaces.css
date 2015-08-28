@@ -2,8 +2,9 @@
     font-family: Menlo, Consolas, monospace;
     color: #444;
 }
-.demo .item {
+.space-item {
     cursor: pointer;
+
 }
 .demo .bold {
     font-weight: bold;
@@ -12,4 +13,5 @@
     padding-left: 1em;
     line-height: 1.5em;
     list-style-type: dot;
+    margin-left: 10px;
 }

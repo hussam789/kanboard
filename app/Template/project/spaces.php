@@ -28,7 +28,7 @@
         data-save-url="<?= $this->url->href('project', 'saveSpaces') ?>"
         data-get-url="<?= $this->url->href('project', 'getSpaces') ?>"
         data-spaces='<?= $spaces ?>'>
-        <li class="item"
+        <li class="space-item"
             v-component="item"
             v-with="model: treeData">
         </li>
