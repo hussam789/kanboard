@@ -685,7 +685,7 @@ class TaskFilter extends Base
         $bars = array();
         $columns = array();
         // ikan
-        foreach ($this->taskFinder->getExtendedQuery() as $task) {
+        foreach ($this->query->findAll() as $task) {
             if (! isset($column_count[$task['project_id']])) {
                 $columns[$task['project_id']] = $this->board->getColumnsList($task['project_id']);
             }
