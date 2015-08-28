@@ -1,23 +1,40 @@
-<?php if (! empty($task['category_id'])): ?>
+<?php /*if (! empty($task['category_id'])): */?>
 <div class="task-board-category-container">
     <!-- ikan -->
-    <?php if ($task['category_id']): ?>
-        <span class="task-board-category">
-            <?= $this->a(
-                $this->inList($task['category_id'], $categories),
+    <?php if (! empty($task['category_id'])): ?>
+        <?php if ($not_editable): ?>
+            <?= $this->e($task['category_name']) ?>
+        <?php else: ?>
+            <?= $this->url->link(
+                $this->e($task['category_name']),
                 'board',
                 'changeCategory',
                 array('task_id' => $task['id'], 'project_id' => $task['project_id']),
                 false,
-                'task-board-popover',
-                t('Change category')
+                'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
+                ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change category')
             ) ?>
-        </span>
+        <?php endif ?>
     <?php endif ?>
     <!-- ikan -->
-    <?php if ($task['spaces']): ?>
+    <?php if (! empty($task['spaces'])): ?>
+        <?php if ($not_editable): ?>
+            <?= $this->e(str_replace('_', '', $task['spaces'])) ?>
+        <?php else: ?>
+            <?= $this->url->link(
+                str_replace('_', '', $task['spaces']),
+                'board',
+                'changeSpace',
+                array('task_id' => $task['id'], 'project_id' => $task['project_id'], 'space' => $task['spaces']),
+                false,
+                'popover' . (! empty($task['category_description']) ? ' tooltip' : ''),
+                ! empty($task['category_description']) ? $this->text->markdown($task['category_description']) : t('Change space')
+            ) ?>
+        <?php endif ?>
+    <?php endif ?>
+    <?php /*if ($task['spaces']): */?><!--
         <span class="task-board-category">
-            <?= $this->a(
+            <?/*= $this->a(
                 str_replace('_', '', $task['spaces']),
                 'board',
                 'changeSpace',
@@ -25,11 +42,11 @@
                 false,
                 'task-board-popover',
                 t('Change space')
-            ) ?>
+            ) */?>
         </span>
-    <?php endif ?>
+    --><?php /*endif */?>
 </div>
-<?php endif ?>
+<?php /*endif */?>
 
 <div class="task-board-icons">
     <?php if (! empty($task['date_due'])): ?>
