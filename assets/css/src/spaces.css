@@ -1,4 +1,4 @@
-.demo {
+#demo {
     font-family: Menlo, Consolas, monospace;
     color: #444;
 }
@@ -13,10 +13,10 @@
     list-style-type: dot;
     margin-left: 10px;
 }
-.demo .bold {
+#demo .bold {
     font-weight: bold;
 }
-.demo ul {
+#demo ul {
     padding-left: 1em;
     line-height: 1.5em;
     list-style-type: dot;
