@@ -1,6 +1,4 @@
-<!--<?= $this->js('assets/js/app.js') ?> -->
 <!-- ikan -->
-<?= $this->css('assets/css/src/spaces.css') ?>
 <section id="main">
 
     <div class="page-header">
