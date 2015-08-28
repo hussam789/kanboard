@@ -11,8 +11,6 @@ const VERSION = 66;
 function version_66($pdo)
 {
     // ikan
-    $pdo->exec('TRUNCATE TABLE links');
-    // ikan
     $rq = $pdo->prepare('INSERT INTO links (label, opposite_id) VALUES (?, ?)');
     $rq->execute(array('relates to', 0));
     $rq->execute(array('(FS)Finish it before staring', 3));
