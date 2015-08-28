@@ -1,14 +1,14 @@
-body {
+.demo {
     font-family: Menlo, Consolas, monospace;
     color: #444;
 }
-.item {
+.demo .item {
     cursor: pointer;
 }
-.bold {
+.demo .bold {
     font-weight: bold;
 }
-ul {
+.demo ul {
     padding-left: 1em;
     line-height: 1.5em;
     list-style-type: dot;
