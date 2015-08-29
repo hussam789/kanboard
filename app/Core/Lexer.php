@@ -20,7 +20,7 @@ class Lexer
 
     /**
      * Token map
-     *
+     * ikan
      * @access private
      * @var array
      */
@@ -114,7 +114,7 @@ class Lexer
         );
 
         while (false !== ($token = current($tokens))) {
-
+            // ikan
             switch ($token['token']) {
                 case 'T_ASSIGNEE':
                 case 'T_COLOR':

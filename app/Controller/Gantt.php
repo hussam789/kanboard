@@ -62,7 +62,7 @@ class Gantt extends Base
         // ikan
         $new_array = array();
         $this->taskFinder->recursive(json_decode($this->project->getSpaces($params['project']['id']), true), 0, $new_array, "");
-        $new_array[self::ALL_SPACES] = self::ALL_SPACES;
+        //$new_array[self::ALL_SPACES] = self::ALL_SPACES;
 
         if ($sorting === 'date') {
             $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->asc(TaskModel::TABLE.'.date_creation');

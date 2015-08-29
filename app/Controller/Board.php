@@ -53,7 +53,7 @@ class Board extends Base
         $this->response->html($this->template->layout('board/private_view', array(
             'categories_list' => $this->category->getList($params['project']['id'], false),
             'users_list' => $this->projectPermission->getMemberList($params['project']['id'], false),
-            'swimlanes' => $swimlanes,
+            'swimlanes' => $this->taskFilter->search($params['filters']['search'])->$swimlanes,
             'description' => $params['project']['description'],
             'board_private_refresh_interval' => $this->config->get('board_private_refresh_interval'),
             'board_highlight_period' => $this->config->get('board_highlight_period'),
@@ -409,7 +409,7 @@ class Board extends Base
     {
         return $this->template->render('board/table_container', array(
             'project' => $this->project->getById($project_id),
-            'swimlanes' => $this->board->getBoardByTradeSwimlanes($project_id),
+            'swimlanes' => $this->taskFilter->search($this->userSession->getFilters($project_id))->$this->board->getBoardByTradeSwimlanes($project_id),
             'board_private_refresh_interval' => $this->config->get('board_private_refresh_interval'),
             'board_highlight_period' => $this->config->get('board_highlight_period'),
         ));
