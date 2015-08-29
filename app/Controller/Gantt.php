@@ -58,7 +58,7 @@ class Gantt extends Base
     {
         $params = $this->getProjectFilters('gantt', 'project');
         $filter = $this->taskFilter->search($params['filters']['search'])->filterByProject($params['project']['id']);
-        $sorting = $this->request->getStringParam('sorting', 'board');
+        $sorting = $this->request->getStringParam('sorting', 'spaces');
         // ikan
         $new_array = array();
         $this->taskFinder->recursive(json_decode($this->project->getSpaces($params['project']['id']), true), 0, $new_array, "");

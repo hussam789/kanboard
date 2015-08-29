@@ -7,14 +7,6 @@
 
     <div class="menu-inline">
         <ul>
-            <li <?= $sorting === 'board' ? 'class="active"' : '' ?>>
-                <i class="fa fa-sort-numeric-asc fa-fw"></i>
-                <?= $this->url->link(t('Sort by position'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'board')) ?>
-            </li>
-            <li <?= $sorting === 'date' ? 'class="active"' : '' ?>>
-                <i class="fa fa-sort-amount-asc fa-fw"></i>
-                <?= $this->url->link(t('Sort by date'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'date')) ?>
-            </li>
             <li <?= $sorting === 'spaces' ? 'class="active"' : '' ?>>
                 <i class="fa fa-sort-amount-asc fa-fw"></i>
                 <?= $this->url->link(t('Sort by spaces'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'spaces')) ?>
@@ -22,6 +14,14 @@
             <li <?= $sorting === 'category' ? 'class="active"' : '' ?>>
                 <i class="fa fa-sort-amount-asc fa-fw"></i>
                 <?= $this->url->link(t('Sort by construction trade'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'category')) ?>
+            </li>
+            <li <?= $sorting === 'board' ? 'class="active"' : '' ?>>
+                <i class="fa fa-sort-numeric-asc fa-fw"></i>
+                <?= $this->url->link(t('Sort by position'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'board')) ?>
+            </li>
+            <li <?= $sorting === 'date' ? 'class="active"' : '' ?>>
+                <i class="fa fa-sort-amount-asc fa-fw"></i>
+                <?= $this->url->link(t('Sort by date'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'date')) ?>
             </li>
             <li>
                 <i class="fa fa-plus fa-fw"></i>

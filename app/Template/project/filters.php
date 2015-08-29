@@ -68,7 +68,7 @@
 
     <?php if (isset($categories_list) && ! empty($categories_list)): ?>
         <div class="dropdown filters">
-        <i class="fa fa-caret-down"></i> <a href="#" class="dropdown-menu"><?= t('Categories') ?></a>
+        <i class="fa fa-caret-down"></i> <a href="#" class="dropdown-menu"><?= t('Trades') ?></a>
         <ul>
             <li><a href="#" class="filter-helper" data-filter="status:open"><?= t('All categories') ?></a></li>
             <li><a href="#" class="filter-helper" data-filter="status:open category:none"><?= t('No category') ?></a></li>
