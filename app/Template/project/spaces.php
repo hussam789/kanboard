@@ -4,7 +4,8 @@
     <div class="page-header">
         <h2><?= t('Space Hierarchy') ?></h2>
         <h4><?= t('* Double click to add child space') ?></h4>
-        <h4><?= t('* Please Type Space abbreviation between Parentheses, example: Level 1 (') ?></h4>
+        <h4><?= t('* Please Type Space abbreviation between Parentheses, example: Level 1 (L1)') ?></h4>
+        <h5><?= t('* If you want to user a space only for notation (wont be a associated with tasks) please add @ sign to the beginning of the task, example: @Level1') ?></h5>
     </div>
     <!-- item template -->
     <script type="text/x-template" id="item-template">

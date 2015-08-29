@@ -167,9 +167,9 @@ class TaskFinder extends Base
 
                 if (preg_match('/\(([A-Za-z0-9 ]+?)\)/', $value, $matches)) {
                     //error_log(implode($matches));
-                    $aabr = '.' . trim($matches[1]);
+                    $aabr = $level == 1 ? trim($matches[1]) : '.' . trim($matches[1]);
                 } else {
-                    $aabr = '.' . trim($value);
+                    $aabr = $level == 1 ? trim(str_replace('@','',$value)) : '.' . trim(str_replace('@','',$value));
                 }
 
                // $path .= '.' . $value;

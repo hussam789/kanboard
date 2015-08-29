@@ -128,6 +128,7 @@ class Taskcreation extends Base
     private function createSingleTask($values, $project)
     {
         if (!empty($values['materials'])) {
+            error_log('MATERIALS' + $values['materials']);
             // Material Category
             global $materialCatId;
             $materialCatId = $this->category->getIdByName($values['project_id'], 'Materials');
