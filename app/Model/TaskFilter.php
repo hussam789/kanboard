@@ -711,7 +711,7 @@ class TaskFilter extends Base
      */
     public function getBoardByTradeSwimlanes($project_id)
     {
-        
+
         $tasks = $this->filterByProject($project_id)->query->asc(Task::TABLE.'.position')->findAll();
 
         return $this->board->getBoardByTradeSwimlanes($project_id, function ($project_id, $column_id, $swimlane_id) use ($tasks) {

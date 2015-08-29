@@ -71,7 +71,10 @@ class Gantt extends Base
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
         } else if ($sorting === 'spaces') {
             // ikan
-            $filter->getQuery()->asc(TaskModel::TABLE.'.spaces');
+            $filter->getQuery()->desc(TaskModel::TABLE.'.spaces');
+        } else if ($sorting === 'category') {
+            // ikan
+            $filter->getQuery()->asc(TaskModel::TABLE.'.category_id');
         }
 
         $this->response->html($this->template->layout('gantt/project', $params + array(
