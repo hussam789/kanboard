@@ -165,8 +165,8 @@ class TaskFinder extends Base
                 //echo str_repeat("_", $level), $value, '<br>';
                 //$path = $parent_path;
 
-                if (preg_match_all('/\(([A-Za-z0-9 ]+?)\)/', $value, $out)) {
-                    $aabr = '.' . trim($out);
+                if (preg_match_all('/\(([A-Za-z0-9 ]+?)\)/', $value, $matches)) {
+                    $aabr = '.' . trim($matches[1]);
                 } else {
                     $aabr = '.' . trim($value);
                 }
