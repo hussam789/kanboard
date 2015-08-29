@@ -54,7 +54,8 @@
         <?= $this->form->label(t('Construction Trade'), 'category_id') ?>
         <?= $this->form->select('category_id', $categories_list, $values, $errors, array('tabindex="4"')) ?><br/>
         <!-- ikan -->
-        <?= $this->form->label(t('Space'), 'spaces') ?>
+        <?= $this->form->label(t('Space'), 'spaces') ?><br/>
+        <div class="form-help"><?= t('Hold down the Ctrl key while selecting multiple items') ?></div><br/>
         <?= $this->form->multiselect('spaces', $spaces_list, $values, $errors) ?><br/>
 
         <!-- ikan -->
@@ -72,8 +73,8 @@
         <?= $this->form->label(t('Color'), 'color_id') ?>
         <?= $this->form->select('color_id', $colors_list, $values, $errors, array('tabindex="7"')) ?><br/>
 
-        <?= $this->form->label(t('Complexity'), 'score') ?>
-        <?= $this->form->number('score', $values, $errors, array('tabindex="8"')) ?><br/>
+<!--        --><?//= $this->form->label(t('Complexity'), 'score') ?>
+<!--        --><?//= $this->form->number('score', $values, $errors, array('tabindex="8"')) ?><!--<br/>-->
 
         <?= $this->form->label(t('Original estimate'), 'time_estimated') ?>
         <?= $this->form->numeric('time_estimated', $values, $errors, array('tabindex="9"')) ?> <?= t('hours') ?><br/>

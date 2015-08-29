@@ -34,9 +34,11 @@ class Taskcreation extends Base
             );
         }
         //ikan
+
         $new_array = array();
         $this->taskFinder->recursive(json_decode($this->project->getSpaces($project['id']), true), 0, $new_array, "");
         $new_array[self::ALL_SPACES] = self::ALL_SPACES;
+        $values['spaces'] = $new_array[0];
         $category = array($values['swimlane_id'] => $this->category->getNameById($values['swimlane_id']));
 
         $this->response->html($this->template->$method('task_creation/form', array(
@@ -71,13 +73,7 @@ class Taskcreation extends Base
 
         if ($valid) {
             // ikan
-            foreach ($values['spaces'] as $selectedOption) {
-                error_log($selectedOption);
-            }
-            error_log(implode(',' , $values));
-            error_log(implode(',' , $_POST['spaces']));
-
-            if ($values['spaces'] == self::ALL_SPACES) {
+            if (in_array(self::ALL_SPACES, $values['spaces'])) {
 
                 $space_list = array();
                 $this->taskFinder->recursive(json_decode($this->project->getSpaces($project['id']), true), 0, $space_list, "");
@@ -94,8 +90,15 @@ class Taskcreation extends Base
                         $values['title'] = $temp_title;
                     }
                 }
-            } else
-                $this->createSingleTask($values, $project);
+            } else {
+                foreach ($values['spaces'] as $selectedOption) {
+                    $values['spaces'] = $selectedOption;
+                    $temp_title = $values['title'];
+                    $values['title'] .= ' - ' . $selectedOption;
+                    $this->createSingleTask($values, $project);
+                    $values['title'] = $temp_title;
+                }
+            }
             if (isset($values['another_task']) && $values['another_task'] == 1) {
                 unset($values['title']);
                 unset($values['description']);

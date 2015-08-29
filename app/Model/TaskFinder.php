@@ -159,8 +159,11 @@ class TaskFinder extends Base
 //                }
                 $this->recursive($value, $level + 1, $new_array, $path . $aabr);
             } else {
-                if ($level == 0)
+                if ($level == 0) {
+                    // Default Space
+                    $new_array[$value] = $value;
                     continue;
+                }
                 //It is not an array, so print it out.
                 //echo str_repeat("_", $level), $value, '<br>';
                 //$path = $parent_path;
