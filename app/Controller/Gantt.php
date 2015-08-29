@@ -59,16 +59,24 @@ class Gantt extends Base
         $params = $this->getProjectFilters('gantt', 'project');
         $filter = $this->taskFilter->search($params['filters']['search'])->filterByProject($params['project']['id']);
         $sorting = $this->request->getStringParam('sorting', 'board');
+        // ikan
+        $new_array = array();
+        $this->taskFinder->recursive(json_decode($this->project->getSpaces($params['project']['id']), true), 0, $new_array, "");
+        $new_array[self::ALL_SPACES] = self::ALL_SPACES;
 
         if ($sorting === 'date') {
             $filter->getQuery()->asc(TaskModel::TABLE.'.date_started')->asc(TaskModel::TABLE.'.date_creation');
         }
-        else {
+        else if ($sorting === 'board') {
             $filter->getQuery()->asc('column_position')->asc(TaskModel::TABLE.'.position');
+        } else if ($sorting === 'spaces') {
+            // ikan
+            $filter->getQuery()->asc(TaskModel::TABLE.'.spaces');
         }
 
         $this->response->html($this->template->layout('gantt/project', $params + array(
             'users_list' => $this->projectPermission->getMemberList($params['project']['id'], false),
+            'spaces' => $new_array,
             'sorting' => $sorting,
             'tasks' => $filter->toGanttBars(),
         )));

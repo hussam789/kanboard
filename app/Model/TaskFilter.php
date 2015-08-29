@@ -44,6 +44,9 @@ class TaskFilter extends Base
                 case 'T_ASSIGNEE':
                     $this->filterByAssignee($value);
                     break;
+                case 'T_SPACE':
+                    $this->filterBySpaces($value);
+                    break;
                 case 'T_COLOR':
                     $this->filterByColors($value);
                     break;
@@ -387,6 +390,32 @@ class TaskFilter extends Base
     }
 
     /**
+     * Filter by space
+     *  ikan
+     * @access public
+     * @param  array    $values   List of assignees
+     * @return TaskFilter
+     */
+    public function filterBySpaces(array $values)
+    {
+        $this->query->beginOr();
+
+        foreach ($values as $space) {
+            switch ($space) {
+                case 'none':
+                    $this->query->eq(Task::TABLE.'.spaces', '');
+                    break;
+                default:
+                    $this->query->ilike(User::TABLE.'.spaces', '%'.$space.'%');
+            }
+        }
+
+        $this->query->closeOr();
+
+        return $this;
+    }
+
+    /**
      * Filter by subtask assignee names
      *
      * @access public
@@ -697,7 +726,7 @@ class TaskFilter extends Base
             $bars[] = array(
                 'type' => 'task',
                 'id' => $task['id'],
-                'title' => $task['title'] . ' (' . str_replace('_','',$task['spaces']) .')',
+                'title' => $task['title'],
                 'start' => array(
                     (int) date('Y', $start),
                     (int) date('n', $start),

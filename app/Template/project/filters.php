@@ -78,4 +78,16 @@
         </ul>
         </div>
     <?php endif ?>
+    <?php if (isset($spaces) && ! empty($spaces)): ?>
+        <div class="dropdown filters">
+            <i class="fa fa-caret-down"></i> <a href="#" class="dropdown-menu"><?= t('Spaces') ?></a>
+            <ul>
+                <li><a href="#" class="filter-helper" data-filter="status:open"><?= t('All spaces') ?></a></li>
+                <li><a href="#" class="filter-helper" data-filter="status:open space:none"><?= t('No space') ?></a></li>
+                <?php foreach ($spaces as $space): ?>
+                    <li><a href="#" class="filter-helper" data-filter='status:open space:"<?= $this->e($space) ?>"'><?= $this->e($space) ?></a></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    <?php endif ?>
 </div>

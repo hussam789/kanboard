@@ -34,6 +34,7 @@ class Lexer
         "/^(status:)/"                                   => 'T_STATUS',
         "/^(description:)/"                              => 'T_DESCRIPTION',
         "/^(category:)/"                                 => 'T_CATEGORY',
+        "/^(space:)/"                                    => 'T_SPACE',
         "/^(column:)/"                                   => 'T_COLUMN',
         "/^(project:)/"                                  => 'T_PROJECT',
         "/^(swimlane:)/"                                 => 'T_SWIMLANE',
@@ -118,6 +119,7 @@ class Lexer
                 case 'T_ASSIGNEE':
                 case 'T_COLOR':
                 case 'T_CATEGORY':
+                case 'T_SPACE':
                 case 'T_COLUMN':
                 case 'T_PROJECT':
                 case 'T_SWIMLANE':
