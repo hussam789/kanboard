@@ -69,7 +69,12 @@ Gantt.prototype.renderVerticalHeader = function() {
     var lastspace;
     var white = false;
     if (this.data[0] != null) {
-        lastspace = this.data[0].space;
+        //if ($(this.options.container).data('sorting') === 'spaces') {
+            lastspace = this.data[0].space;
+        //} else {
+        //    lastspace = this.data[0].category_id;
+        //}
+
     }
     for (var i = 0; i < this.data.length; i++) {
         var content = jQuery("<span>")

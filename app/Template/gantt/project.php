@@ -34,6 +34,7 @@
         <div
             id="gantt-chart"
             data-records='<?= json_encode($tasks, JSON_HEX_APOS) ?>'
+            data-sorting='<?= $sorting?>'
             data-save-url="<?= $this->url->href('gantt', 'saveTaskDate', array('project_id' => $project['id'])) ?>"
             data-label-start-date="<?= t('Start date:') ?>"
             data-label-end-date="<?= t('Due date:') ?>"
