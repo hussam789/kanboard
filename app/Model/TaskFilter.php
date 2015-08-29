@@ -714,9 +714,7 @@ class TaskFilter extends Base
         $tasks = $this->filterByProject($project_id)->query->asc(Task::TABLE.'.position')->findAll();
 
         return $this->board->getBoardByTradeSwimlanes($project_id, function ($project_id, $column_id, $swimlane_id) use ($tasks) {
-            return array_filter($tasks, function(array $task) use ($column_id, $swimlane_id) {
-                return $task['column_id'] == $column_id && $task['swimlane_id'] == $swimlane_id;
-            });
+            return array_filter($tasks);
         });
     }
 
