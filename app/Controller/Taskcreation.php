@@ -74,7 +74,9 @@ class Taskcreation extends Base
             foreach ($values['spaces'] as $selectedOption) {
                 error_log($selectedOption);
             }
-            error_log(implode($values));
+            error_log(implode(',' , $values));
+            error_log(implode(',' , $_POST['spaces']));
+
             if ($values['spaces'] == self::ALL_SPACES) {
 
                 $space_list = array();

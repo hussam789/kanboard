@@ -80,7 +80,7 @@ class Form extends \Core\Base
      */
     public function multiselect($name, array $options, array $values = array(), array $errors = array(), array $attributes = array(), $class = '')
     {
-        $html = '<select name="'.$name.'" id="form-'.$name.'" class="'.$class.'" '.implode(' ', $attributes).' multiple size="10">';
+        $html = '<select name="'.$name.'[]" id="form-'.$name.'" class="'.$class.'" '.implode(' ', $attributes).' multiple="multiple" size="10">';
 
         foreach ($options as $id => $value) {
 

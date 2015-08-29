@@ -175,6 +175,7 @@ class TaskFinder extends Base
                // $path .= '.' . $value;
                 if ($value[0] != '@') {
                     $newString = $path . '.' . trim(preg_replace('/\(([^()]*+|(?R))*\)\s*/', '', $value));
+                    $newString = ltrim($newString, '.');
                     $new_array[$newString] = $newString;
                 }
 
