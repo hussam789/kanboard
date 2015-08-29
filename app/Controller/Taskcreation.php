@@ -71,7 +71,10 @@ class Taskcreation extends Base
 
         if ($valid) {
             // ikan
-            error_log($values['spaces']);
+            foreach ($values['spaces'] as $selectedOption) {
+                error_log($selectedOption);
+            }
+            error_log(implode($values));
             if ($values['spaces'] == self::ALL_SPACES) {
 
                 $space_list = array();
@@ -127,6 +130,7 @@ class Taskcreation extends Base
      */
     private function createSingleTask($values, $project)
     {
+        $materialTaskId = 0;
         if (!empty($values['materials'])) {
             error_log('MATERIALS' + $values['materials']);
             // Material Category
@@ -174,7 +178,9 @@ class Taskcreation extends Base
         $originalTask = $this->taskCreation->create($values);
         if ($originalTask) {
             // link material task with original task
-            $this->taskLink->create($materialTaskId, $originalTask, 9);
+            if ($materialTaskId != 0) {
+                $this->taskLink->create($materialTaskId, $originalTask, 9);
+            }
             $this->session->flash(t('Task created successfully.'));
             return true;
         } else {
