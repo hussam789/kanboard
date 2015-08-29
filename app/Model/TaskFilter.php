@@ -755,6 +755,7 @@ class TaskFilter extends Base
                     (int) date('n', $end),
                     (int) date('j', $end),
                 ),
+                'space' => $task['spaces'],
                 'column_title' => $task['column_name'],
                 'assignee' => $task['assignee_name'] ?: $task['assignee_username'],
                 'progress' => $this->task->getProgress($task, $columns[$task['project_id']]).'%',

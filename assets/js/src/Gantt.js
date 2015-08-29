@@ -65,6 +65,11 @@ Gantt.prototype.renderVerticalHeader = function() {
     var itemDiv = jQuery("<div>", { "class": "ganttview-vtheader-item" });
     var seriesDiv = jQuery("<div>", { "class": "ganttview-vtheader-series" });
 
+    //ikan
+    var lastspace;
+    if (this.data[0] != null) {
+        lastspace = this.data[0].space;
+    }
     for (var i = 0; i < this.data.length; i++) {
         var content = jQuery("<span>")
             .append(jQuery("<i>", {"class": "fa fa-info-circle tooltip", "title": this.getVerticalHeaderTooltip(this.data[i])}))
@@ -82,7 +87,8 @@ Gantt.prototype.renderVerticalHeader = function() {
                 .append(jQuery("<a>", {"href": this.data[i].link, "target": "_blank"}).append(this.data[i].title));
         }
 
-        seriesDiv.append(jQuery("<div>", {"class": "ganttview-vtheader-series-name"}).append(content));
+        seriesDiv.append(jQuery("<div>", {"class": "ganttview-vtheader-series-name", "style" : lastspace === this.data[i].space ? "background-color:LightGray;" : "background-color:White;"}).append(content));
+        lastspace = this.data[i].space;
     }
 
     itemDiv.append(seriesDiv);
