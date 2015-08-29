@@ -290,7 +290,7 @@ class Board extends Base
                 $column_id = $columns[$j]['id'];
                 //$swimlane_id = $swimlanes[$i]['id'];
 
-                $trades[$i]['columns'][$j]['tasks'] = $callback === null ? $this->taskFinder->getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id']) : $callback($project_id, $column_id, $trades[$i]['id']);
+                $trades[$i]['columns'][$j]['tasks'] = $this->taskFinder->getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id']);
                 $trades[$i]['columns'][$j]['nb_tasks'] = count($trades[$i]['columns'][$j]['tasks']);
                 $trades[$i]['nb_tasks'] += $trades[$i]['columns'][$j]['nb_tasks'];
             }
