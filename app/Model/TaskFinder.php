@@ -225,6 +225,27 @@ class TaskFinder extends Base
     }
 
     /**
+     * Get all tasks for a given project and status
+     * ikan
+     * @access public
+     * @param  integer   $project_id      Project id
+     * @param  integer   $status_id       Status id
+     * @return array
+     */
+    public function getAllWithSubtasks($project_id, $status_id = Task::STATUS_OPEN)
+    {
+        $tasks = $this->db
+            ->table(Task::TABLE)
+            ->eq('project_id', $project_id)
+            ->eq('is_active', $status_id)
+            ->findAll();
+
+        for ($i = 0, $ilen = count($tasks); $i < $ilen; $i++) {
+            $tasks[$i]['subtasks'] = $this->subtask->getAll($tasks[$i]['id']);
+        }
+    }
+
+    /**
      * Get a list of overdue tasks for all projects
      *
      * @access public

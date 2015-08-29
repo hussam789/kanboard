@@ -30,6 +30,12 @@ class Task extends Base
         return $this->formatTasks($this->taskFinder->getAll($project_id, $status_id));
     }
 
+    public function getAllTasksWithSubtasks($project_id, $status_id = TaskModel::STATUS_OPEN)
+    {
+        $this->checkProjectPermission($project_id);
+        return $this->formatTasks($this->taskFinder->getAllWithSubtasks($project_id, $status_id));
+    }
+
     public function getOverdueTasks()
     {
         return $this->taskFinder->getOverdueTasks();
