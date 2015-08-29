@@ -71,6 +71,7 @@ class Taskcreation extends Base
 
         if ($valid) {
             // ikan
+            error_log($values['spaces']);
             if ($values['spaces'] == self::ALL_SPACES) {
 
                 $space_list = array();
