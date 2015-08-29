@@ -685,8 +685,8 @@ class TaskFilter extends Base
         $bars = array();
         $columns = array();
         // ikan
-       $query = $this->db->table(Task::TABLE);
-        foreach ($query->findAll() as $task) {
+      // $query = $this->db->table(Task::TABLE);
+        foreach ($this->query->findAll() as $task) {
             if (! isset($column_count[$task['project_id']])) {
                 $columns[$task['project_id']] = $this->board->getColumnsList($task['project_id']);
             }
@@ -697,7 +697,7 @@ class TaskFilter extends Base
             $bars[] = array(
                 'type' => 'task',
                 'id' => $task['id'],
-                'title' => $task['title'] . ' (' . $task['spaces'] .')',
+                'title' => $task['title'] . ' (' . str_replace('_','',$task['spaces']) .')',
                 'start' => array(
                     (int) date('Y', $start),
                     (int) date('n', $start),
