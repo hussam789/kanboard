@@ -141,7 +141,7 @@ class TaskFinder extends Base
             ->join(Project::TABLE, 'id', 'project_id', Task::TABLE);
     }
 
-    function recursive($array, $level = 1, &$new_array, $path){
+    function recursive($array, $level, &$new_array, $path){
         // ikan
         if (empty($array)) {
             return;
@@ -159,12 +159,14 @@ class TaskFinder extends Base
 //                }
                 $this->recursive($value, $level + 1, $new_array, $path . $aabr);
             } else {
+                if ($level == 0)
+                    continue;
                 //It is not an array, so print it out.
                 //echo str_repeat("_", $level), $value, '<br>';
                 //$path = $parent_path;
 
                 if (preg_match_all('/\(([A-Za-z0-9 ]+?)\)/', $value, $out)) {
-                    $aabr = '.' . trim($out[0]);
+                    $aabr = '.' . trim($out);
                 } else {
                     $aabr = '.' . trim($value);
                 }
