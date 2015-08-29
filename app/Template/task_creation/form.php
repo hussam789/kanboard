@@ -56,6 +56,12 @@
         <!-- ikan -->
         <?= $this->form->label(t('Space'), 'spaces') ?>
         <?= $this->form->select('spaces', $spaces_list, $values, $errors) ?><br/>
+        <?= $this->Form->select('Model.field', array(
+            'Value 1' => 'Label 1',
+            'Value 2' => 'Label 2'
+        ), array(
+            'multiple' => 'checkbox'
+        )) ?><br/>
         <!-- ikan -->
         <?= $this->form->label(t('Materials (Comma separated)'), 'materials') ?>
         <?= $this->form->text('materials', $values, $errors) ?><br/>
