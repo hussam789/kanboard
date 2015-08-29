@@ -3,7 +3,8 @@
 
     <div class="page-header">
         <h2><?= t('Space Hierarchy') ?></h2>
-        <h4><?= t('* double click to add child space') ?></h4>
+        <h4><?= t('* Double click to add child space') ?></h4>
+        <h4><?= t('* Please Type Space abbreviation between Parentheses, example: Level 1 (') ?></h4>
     </div>
     <!-- item template -->
     <script type="text/x-template" id="item-template">

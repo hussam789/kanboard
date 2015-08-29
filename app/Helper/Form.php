@@ -68,6 +68,37 @@ class Form extends \Core\Base
     }
 
     /**
+     * Display a select field
+     *
+     * @access public
+     * @param  string  $name     Field name
+     * @param  array   $options  Options
+     * @param  array   $values   Form values
+     * @param  array   $errors   Form errors
+     * @param  string  $class    CSS class
+     * @return string
+     */
+    public function multiselect($name, array $options, array $values = array(), array $errors = array(), array $attributes = array(), $class = '')
+    {
+        $html = '<select name="'.$name.'" id="form-'.$name.'" class="'.$class.'" '.implode(' ', $attributes).' multiple size="10">';
+
+        foreach ($options as $id => $value) {
+
+            $html .= '<option value="'.$this->helper->e($id).'"';
+
+            if (isset($values->$name) && $id == $values->$name) $html .= ' selected="selected"';
+            if (isset($values[$name]) && $id == $values[$name]) $html .= ' selected="selected"';
+
+            $html .= '>'.$this->helper->e($value).'</option>';
+        }
+
+        $html .= '</select>';
+        $html .= $this->errorList($errors, $name);
+
+        return $html;
+    }
+
+    /**
      * Display a radio field group
      *
      * @access public

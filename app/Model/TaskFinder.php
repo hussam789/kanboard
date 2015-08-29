@@ -146,7 +146,8 @@ class TaskFinder extends Base
         if (empty($array)) {
             return;
         }
-        $parent_path = $path;
+        //$parent_path = $path;
+        $aabr = '';
         foreach($array as $key => $value){
             //If $value is an array.
             if(is_array($value)){
@@ -156,13 +157,24 @@ class TaskFinder extends Base
 //                if (!is_numeric($key)) {
 //                    $path .= $key . ".";
 //                }
-                $this->recursive($value, $level + 1, $new_array, $path);
+                $this->recursive($value, $level + 1, $new_array, $path . $aabr);
             } else {
                 //It is not an array, so print it out.
                 //echo str_repeat("_", $level), $value, '<br>';
-                $path = $parent_path;
-                $path .= '.' . $value;
-                $new_array[$path] = $path;
+                //$path = $parent_path;
+
+                if (preg_match_all('/\(([A-Za-z0-9 ]+?)\)/', $value, $out)) {
+                    $aabr = '.' . trim($out[0]);
+                } else {
+                    $aabr = '.' . trim($value);
+                }
+
+               // $path .= '.' . $value;
+                if ($value[0] != '@') {
+                    $newString = $path . '.' . trim(preg_replace('/\(([^()]*+|(?R))*\)\s*/', '', $value));
+                    $new_array[$newString] = $newString;
+                }
+
                 //array_push($new_array, str_repeat("_", $level) . $value);
             }
         }
