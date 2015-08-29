@@ -731,7 +731,7 @@ class TaskFilter extends Base
     {
         $bars = array();
         $columns = array();
-        // ikan
+        // ikan space
       // $query = $this->db->table(Task::TABLE);
         foreach ($this->query->findAll() as $task) {
             if (! isset($column_count[$task['project_id']])) {

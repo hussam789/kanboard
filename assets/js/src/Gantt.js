@@ -67,6 +67,7 @@ Gantt.prototype.renderVerticalHeader = function() {
 
     //ikan
     var lastspace;
+    var white = false;
     if (this.data[0] != null) {
         lastspace = this.data[0].space;
     }
@@ -86,8 +87,12 @@ Gantt.prototype.renderVerticalHeader = function() {
                 .append("&nbsp;")
                 .append(jQuery("<a>", {"href": this.data[i].link, "target": "_blank"}).append(this.data[i].title));
         }
-
-        seriesDiv.append(jQuery("<div>", {"class": "ganttview-vtheader-series-name", "style" : lastspace === this.data[i].space ? "background-color:LightGray;" : "background-color:White;"}).append(content));
+        // ikan
+        var color;
+        if (!(lastspace === this.data[i].space)) {
+            white = !white;
+        }
+        seriesDiv.append(jQuery("<div>", {"class": "ganttview-vtheader-series-name", "style" : white ? "background-color:White;" : "background-color:LightGray;"}).append(content));
         lastspace = this.data[i].space;
     }
 
