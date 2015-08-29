@@ -406,7 +406,7 @@ class TaskFilter extends Base
                     $this->query->eq(Task::TABLE.'.spaces', '');
                     break;
                 default:
-                    $this->query->ilike(User::TABLE.'.spaces', '%'.$space.'%');
+                    $this->query->ilike(Task::TABLE.'.spaces', '%'.$space.'%');
             }
         }
 
