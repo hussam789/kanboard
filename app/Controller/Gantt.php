@@ -75,6 +75,9 @@ class Gantt extends Base
         } else if ($sorting === 'category') {
             // ikan
             $filter->getQuery()->asc(TaskModel::TABLE.'.category_id')->desc(TaskModel::TABLE.'.spaces');
+        } else if ($sorting === 'spacesNoMaterials') {
+            // ikan
+            $filter->getQuery()->neq(TaskModel::TABLE.'.category_id', $this->category->getIdByName($params['project']['id'], 'Materials'))->desc(TaskModel::TABLE.'.spaces')->asc(TaskModel::TABLE.'.category_id');
         }
 
         $this->response->html($this->template->layout('gantt/project', $params + array(

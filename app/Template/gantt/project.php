@@ -11,6 +11,10 @@
                 <i class="fa fa-sort-amount-asc fa-fw"></i>
                 <?= $this->url->link(t('Sort by spaces'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'spaces')) ?>
             </li>
+            <li <?= $sorting === 'spacesNoMaterials' ? 'class="active"' : '' ?>>
+                <i class="fa fa-sort-amount-asc fa-fw"></i>
+                <?= $this->url->link(t('Sort by spaces'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'spacesNoMaterials')) ?>
+            </li>
             <li <?= $sorting === 'category' ? 'class="active"' : '' ?>>
                 <i class="fa fa-sort-amount-asc fa-fw"></i>
                 <?= $this->url->link(t('Sort by construction trade'), 'gantt', 'project', array('project_id' => $project['id'], 'sorting' => 'category')) ?>
