@@ -407,6 +407,7 @@ class Board extends Base
      */
     private function renderBoard($project_id)
     {
+        
         return $this->template->render('board/table_container', array(
             'project' => $this->project->getById($project_id),
             'swimlanes' => $this->taskFilter->search($this->userSession->getFilters($project_id))->getBoardByTradeSwimlanes($project_id),
