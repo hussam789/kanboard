@@ -146,20 +146,23 @@ class TaskFinder extends Base
         if (empty($array)) {
             return;
         }
+        $parent_path = $path;
         foreach($array as $key => $value){
             //If $value is an array.
             if(is_array($value)){
                 //We need to loop through it.
                 //if (!is_numeric($key))
                 //echo str_repeat("_", $level), $key, '<br>';
-                if (is_numeric($key)) {
-                    $path .= $key . ".";
-                }
+//                if (!is_numeric($key)) {
+//                    $path .= $key . ".";
+//                }
                 $this->recursive($value, $level + 1, $new_array, $path);
             } else {
                 //It is not an array, so print it out.
                 //echo str_repeat("_", $level), $value, '<br>';
-                $new_array[$path . $value] = str_repeat("_", $level) . $value;
+                $path = $parent_path;
+                $path .= '.' . $value;
+                $new_array[$path] = $path;
                 //array_push($new_array, str_repeat("_", $level) . $value);
             }
         }
