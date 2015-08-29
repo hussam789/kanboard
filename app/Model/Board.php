@@ -269,6 +269,14 @@ class Board extends Base
         return $swimlanes;
     }
 
+    /**
+     * Get all tasks sorted by columns and swimlanes
+     *
+     * @access public
+     * @param  integer  $project_id
+     * @param  callable $callback
+     * @return array
+     */
     // ikan
     public function getBoardByTradeSwimlanes($project_id, $callback = null)
     {
@@ -288,9 +296,9 @@ class Board extends Base
 
             for ($j = 0; $j < $nb_columns; $j++) {
                 $column_id = $columns[$j]['id'];
-                //$swimlane_id = $swimlanes[$i]['id'];
+                $trades_id = $trades[$i]['id'];
 
-                $trades[$i]['columns'][$j]['tasks'] = $callback === null ? $this->taskFinder->getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id']) : $callback($project_id, $column_id, $trades[$i]['id']);
+                $trades[$i]['columns'][$j]['tasks'] = $callback === null ? $this->taskFinder->getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id']) : $callback($project_id, $column_id, $trades_id);
                 $trades[$i]['columns'][$j]['nb_tasks'] = count($trades[$i]['columns'][$j]['tasks']);
                 $trades[$i]['nb_tasks'] += $trades[$i]['columns'][$j]['nb_tasks'];
             }
