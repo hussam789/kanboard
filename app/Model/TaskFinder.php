@@ -243,6 +243,7 @@ class TaskFinder extends Base
         for ($i = 0, $ilen = count($tasks); $i < $ilen; $i++) {
             $tasks[$i]['subtasks'] = $this->subtask->getAll($tasks[$i]['id']);
         }
+        return $tasks;
     }
 
     /**
