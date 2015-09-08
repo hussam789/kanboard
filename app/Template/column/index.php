@@ -30,19 +30,19 @@
                         <?= $this->url->link(t('Edit'), 'column', 'edit', array('project_id' => $project['id'], 'column_id' => $column['id'])) ?>
                     </li>
                     <!-- ikan-->
-<!--                    --><?php //if ($column['position'] != $first_position): ?>
-<!--                    <li>-->
-<!--                        --><?//= $this->url->link(t('Move Up'), 'column', 'move', array('project_id' => $project['id'], 'column_id' => $column['id'], 'direction' => 'up'), true) ?>
-<!--                    </li>-->
-<!--                    --><?php //endif ?>
-<!--                    --><?php //if ($column['position'] != $last_position): ?>
-<!--                    <li>-->
-<!--                        --><?//= $this->url->link(t('Move Down'), 'column', 'move', array('project_id' => $project['id'], 'column_id' => $column['id'], 'direction' => 'down'), true) ?>
-<!--                    </li>-->
-<!--                    --><?php //endif ?>
-<!--                    <li>-->
-<!--                        --><?//= $this->url->link(t('Remove'), 'column', 'confirm', array('project_id' => $project['id'], 'column_id' => $column['id'])) ?>
-<!--                    </li>-->
+                    <?php if ($column['position'] != $first_position): ?>
+                    <li>
+                        <?= $this->url->link(t('Move Up'), 'column', 'move', array('project_id' => $project['id'], 'column_id' => $column['id'], 'direction' => 'up'), true) ?>
+                    </li>
+                    <?php endif ?>
+                    <?php if ($column['position'] != $last_position): ?>
+                    <li>
+                        <?= $this->url->link(t('Move Down'), 'column', 'move', array('project_id' => $project['id'], 'column_id' => $column['id'], 'direction' => 'down'), true) ?>
+                    </li>
+                    <?php endif ?>
+                    <li>
+                        <?= $this->url->link(t('Remove'), 'column', 'confirm', array('project_id' => $project['id'], 'column_id' => $column['id'])) ?>
+                    </li>
                 </ul>
             </td>
         </tr>
