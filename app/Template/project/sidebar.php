@@ -18,9 +18,10 @@
             <li <?= $this->app->getRouterController() === 'column' ? 'class="active"' : '' ?>>
                 <?= $this->url->link(t('Columns'), 'column', 'index', array('project_id' => $project['id'])) ?>
             </li>
-            <li <?= $this->app->getRouterController() === 'swimlane' ? 'class="active"' : '' ?>>
-                <?= $this->url->link(t('Swimlanes'), 'swimlane', 'index', array('project_id' => $project['id'])) ?>
-            </li>
+            <!-- ikan -->
+<!--            <li --><?//= $this->app->getRouterController() === 'swimlane' ? 'class="active"' : '' ?><!-->-->
+<!--                --><?//= $this->url->link(t('Swimlanes'), 'swimlane', 'index', array('project_id' => $project['id'])) ?>
+<!--            </li>-->
             <!-- ikan -->
             <li <?= $this->app->getRouterController() === 'category' ? 'class="active"' : '' ?>>
                 <?= $this->url->link(t('Construction Trades'), 'category', 'index', array('project_id' => $project['id'])) ?>

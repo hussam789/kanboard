@@ -1,26 +1,6 @@
 <div class="page-header">
     <h2><?= t('About') ?></h2>
 </div>
-<div class="listing">
-    <ul>
-        <li>
-            <?= t('Official website:') ?>
-            <a href="http://kanboard.net/" target="_blank" rel="noreferer">http://kanboard.net/</a>
-        </li>
-        <li>
-            <?= t('Application version:') ?>
-            <strong><?= APP_VERSION ?></strong>
-        </li>
-        <li>
-            <?= t('Author:') ?>
-            <strong>Frédéric Guillot</strong> (<a href="https://github.com/fguillot/kanboard/blob/master/CONTRIBUTORS.md" target="_blank"><?= t('contributors') ?></a>)
-        </li>
-        <li>
-            <?= t('License:') ?>
-            <strong>MIT</strong>
-        </li>
-    </ul>
-</div>
 
 <div class="page-header">
     <h2><?= t('Database') ?></h2>
