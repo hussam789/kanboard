@@ -1,36 +1,44 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>iKan by hussam789</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">iKan</h1>
-      <h2 class="project-tagline">Simple visual task board</h2>
-      <a href="https://github.com/hussam789/kanboard" class="btn">View on GitHub</a>
-      <a href="https://github.com/hussam789/kanboard/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/hussam789/kanboard/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <section class="main-content">
-      <h1>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>iKan by hussam789</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>iKan</h1>
+        <h2>Simple visual task board</h2>
+        <a href="https://github.com/hussam789/kanboard" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
 <a id="ikan" class="anchor" href="#ikan" aria-hidden="true"><span class="octicon octicon-link"></span></a>iKan</h1>
 
 <hr>
 
-<p><img src="http://s22.postimg.org/jmufttie9/ic_launcher.png" alt="ikanLogo">
-<img src="http://s22.postimg.org/jmufttie9/ic_launcher.png" alt="ikan_logo"></p>
+<p><img src="http://s22.postimg.org/jmufttie9/ic_launcher.png" alt="ikan_logo"></p>
 
 <h2>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p><strong>iKan</strong> is a Construction site managment which implements the basic principles of <a href="https://en.wikipedia.org/wiki/Lean_construction">Lean construction</a>. the purpose of the Project is to focus on Kanban methodology.</p>
+<p><strong>iKan is a Construction site managment which implements the basic principles of <a href="https://en.wikipedia.org/wiki/Lean_construction">Lean construction</a>. the Project focuses on Kanban methodology, and to optimize the team work in the construction site and to save work time and make the steps of the work easier and cleaner.</strong></p>
 
 <h3>
 <a id="what-is-kanban" class="anchor" href="#what-is-kanban" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Kanban?</h3>
@@ -47,33 +55,447 @@
 <li>Kanban board is persistent</li>
 </ul>
 
-<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">index</span>()</span>
-<span class="pl-s1">    {</span>
-<span class="pl-s1">        <span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getUser();</span>
-<span class="pl-s1"></span>
-<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">response</span><span class="pl-k">-&gt;</span>html(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>layout(<span class="pl-s"><span class="pl-pds">'</span>app/overview<span class="pl-pds">'</span></span>, <span class="pl-c1">array</span>(</span>
-<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> t(<span class="pl-s"><span class="pl-pds">'</span>Dashboard<span class="pl-pds">'</span></span>),</span>
-<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>project_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getProjectPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
-<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>task_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getTaskPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
-<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>subtask_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getSubtaskPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
-<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$user</span>,</span>
-<span class="pl-s1">        )));</span>
-<span class="pl-s1">    }</span></pre></div>
-
 <h2>
 <a id="ikan-project" class="anchor" href="#ikan-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>iKan project</h2>
 
 <p>the project contains two main apps:</p>
 
-<p>1.<strong>Admin Website:</strong> </p>
+<h3>
+<a id="managment-website" class="anchor" href="#managment-website" aria-hidden="true"><span class="octicon octicon-link"></span></a>Managment website:</h3>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/hussam789/kanboard">iKan</a> is maintained by <a href="https://github.com/hussam789">hussam789</a>.</span>
+<p>This system is based on an opensource project called <a href="https://github.com/fguillot/kanboard">Kanboard</a>, which has basic functionality like: Kanban board, Creating tasks and project, Calendar ect...</p>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+<p>iKan is a customized version of <a href="https://github.com/fguillot/kanboard">Kanboard</a>, for the purpose of adapting it to the construction site managment needs.</p>
 
-    </section>
+<h3>
+<a id="main-features" class="anchor" href="#main-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Main Features:</h3>
+
+<h4>
+<a id="construction-trade" class="anchor" href="#construction-trade" aria-hidden="true"><span class="octicon octicon-link"></span></a>Construction Trade:</h4>
+
+<p>For each project the Adimistrator/Project Manager can add/edit the list of Construction Trades that are participating in the project.
+<img src="http://i.imgur.com/RRKSFbq.png" alt="construction_trade"></p>
+
+<h4>
+<a id="spaces" class="anchor" href="#spaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Spaces:</h4>
+
+<p>For each project the Adimistrator/Project Manager can add a heirarchy of the spaces in the project
+<img src="http://i.imgur.com/WeDN6Qv.png" alt="spaces"></p>
+
+<blockquote>
+<ul>
+<li>To add an abbreviation to Spaces that have childen, type between parentheses.</li>
+<li>Use @ sign to indicate that the space is for notation only and cannot be assosiated with any task</li>
+</ul>
+
+<p>Spaces are presisted as a json string inside Projects Table, in order to display the heirarchy and to save the json, we Serialize and deSerialize the json object of this structure:</p>
+</blockquote>
+
+<p>** Load and Save Spaces Methods **</p>
+
+<pre><code>function load_Spaces() {
+    var sp = $("#demo").attr("data-spaces");
+    console.log('spaces:' + sp);
+    var data;
+    if (sp.length == 0) {
+        data = {name: "Spaces"};
+    } else {
+        data = JSON.parse(sp);
+    }
+}
+
+$("#save").click(function () {
+        console.log('save' + JSON.stringify(demo.$data.treeData));
+        $.ajax({
+            cache: false,
+            url: $("#demo").attr("data-save-url"),
+            contentType: "application/json",
+            type: "POST",
+            processData: false,
+            data: JSON.stringify({
+                "project_id": $("#demo").attr("data-project-id"),
+                "spaces":JSON.stringify(demo.$data.treeData)
+            }),
+            success: function(spaces) {
+                //data = spaces;
+                alert('Saved spaces')
+                console.log('data saved');
+            }
+        });
+    });
+</code></pre>
+
+<p>** Spaces Data Object **</p>
+
+<pre><code>{
+  "name": "Spaces",
+  "children": [
+    {
+      "name": "Level -1 - Parking"
+    },
+    {
+      "name": "Level 0 - Lobby"
+    },
+    {
+      "name": "@Level 1 (L1)",
+      "children": [
+        {
+          "name": "NE 3 Rooms Apt (NE3RMs)",
+          "children": [
+            {
+              "name": "Living Room"
+            },
+            {
+              "name": "Master Bedroom"
+            },
+            {
+              "name": "Children Bedroom"
+            }
+          ]
+        },
+        {
+          "name": "NW 4 Rooms Apt (NW4RMs)",
+          "children": [
+            {
+              "name": "Living Room"
+            },
+            {
+              "name": "Master Bedroom"
+            },
+            {
+              "name": "Children Bedroom A"
+            },
+            {
+              "name": "Children Bedroom B"
+            }
+          ]
+        },
+        {
+          "name": "SW 4 Rooms Apt (SW4RMs)",
+          "children": [
+            {
+              "name": "Living Room"
+            },
+            {
+              "name": "Master Bedroom"
+            },
+            {
+              "name": "Children Bedroom A"
+            },
+            {
+              "name": "Children Bedroom B"
+            }
+          ]
+        },
+        {
+          "name": "SE 3 Rooms Apt (SE3RMs)",
+          "children": [
+            {
+              "name": "Living Room"
+            },
+            {
+              "name": "Master Bedroom"
+            },
+            {
+              "name": "Children Bedroom"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+
+<h4>
+<a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links:</h4>
+
+<p>Tasks can be linked together with predefined relationships:</p>
+
+<p>The Administrator can edit list of Links/Relations between Tasks</p>
+
+<blockquote>
+<p>Material links cannot be removed since they are part of the system</p>
+</blockquote>
+
+<p><img src="http://i.imgur.com/HkzoFFY.png" alt="links"></p>
+
+<h4>
+<a id="creating-new-tasks" class="anchor" href="#creating-new-tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating new Tasks:</h4>
+
+<p>The Admin/Project manager can create new tasks by specifying:</p>
+
+<ol>
+<li>title</li>
+<li>Description (Markdown Text)</li>
+<li>Choose Assignee</li>
+<li>Selecting Spaces that needs to create Tasks (one task per space) [^1] , [^2]</li>
+<li>Materials should be added with comma separation, example : Asphalt, Sand, Water</li>
+<li>Color, Time Estimate, Due Date</li>
+</ol>
+
+<p><img src="http://i.imgur.com/aPbQ1XW.png" alt="new_task"></p>
+
+<p>** Parsing Spaces **</p>
+
+<p>Parse Spaces Json and getting list of Spaces with Abbreviated Path (handeling @ signs, Trimming spaces), using ** Recursive method **</p>
+
+<pre><code>    function recursive_spaces_walkthrough ($array, $level, &amp;$new_array, $path){
+        if (empty($array)) {
+            return;
+        }
+        $aabreviation = '';
+        foreach($array as $key =&gt; $value){
+            //If $value is an array.
+            if(is_array($value)){
+                // walkthrough its children
+                $this-&gt;recursive($value, $level + 1, $new_array, $path . $aabreviation);
+            } else {
+                if ($level == 0) {
+                    // Default Space
+                    $new_array[$value] = $value;
+                    continue;
+                }
+                //It is not an array, so print it out.
+               //Check if Space name has Abbreviation in Parentheses ().
+               if (preg_match('/\(([A-Za-z0-9 ]+?)\)/', $value, $matches)) {
+                    $aabreviation = $level == 1 ? trim($matches[1]) : '.' . trim($matches[1]);
+                } else {
+                    $aabreviation = $level == 1 ? trim(str_replace('@','',$value)) : '.' . trim(str_replace('@','',$value));
+                }
+
+                if ($value[0] != '@') {
+                    $newString = $path . '.' . trim(preg_replace('/\(([^()]*+|(?R))*\)\s*/', '', $value));
+                    $newString = ltrim($newString, '.');
+                    $new_array[$newString] = $newString;
+                }
+            }
+        }
+    }
+</code></pre>
+
+<p>** Saving new Task **</p>
+
+<pre>
+/**
+     * Validate and save a new task
+     *
+     * @access public
+     */
+    public function save()
+    {
+        $project = $this-&gt;getProject();
+        $values = $this-&gt;request-&gt;getValues();
+
+        list($valid, $errors) = $this-&gt;taskValidator-&gt;validateCreation($values);
+
+        if ($valid) {
+            // ikan
+            // if "all spaces" is selected: create tasks for all the spaces
+            if (in_array(self::ALL_SPACES, $values['spaces'])) {
+
+                $space_list = array();
+             $this-&gt;taskFinder-&gt;recursive(json_decode($this-&gt;project-&gt;getSpaces($project['id']), true),
+              0, $space_list, "");
+                if (count($space_list) == 0) {
+                    $this-&gt;createSingleTask($values, $project);
+                } else {
+                    $output = print_r($space_list,1);
+                    error_log($output);
+                    foreach ($space_list as $space_name) {
+                        $values['spaces'] = $space_name;
+                        $temp_title = $values['title'];
+                        $values['title'] .= ' - ' . str_replace('_', '', $space_name);
+                        $this-&gt;createSingleTask($values, $project);
+                        $values['title'] = $temp_title;
+                    }
+                }
+            } else {<b>
+            // for each one of the selected spaces create Task
+                foreach ($values['spaces'] as $selectedOption) {
+                    $values['spaces'] = $selectedOption;
+                    $temp_title = $values['title'];
+                    $values['title'] .= ' - ' . $selectedOption;
+                    $this-&gt;createSingleTask($values, $project);
+                    $values['title'] = $temp_title;
+                }</b>
+            }
+            .
+            .
+            .
+        }
+        $this-&gt;create($values, $errors);
+    }
+</pre>
+
+<pre>
+private function createSingleTask($values, $project)
+    {
+        $materialTaskId = 0;
+        <b>// if the task requires materials</b>
+        if (!empty($values['materials'])) {
+            <b>// get Materials Category id</b>
+            global $materialCatId;
+            $materialCatId = $this-&gt;category-&gt;getIdByName($values['project_id'], 'Materials');
+            if ($materialCatId == 0 ) {
+                // if not exist create Material Category
+                $materialCatId = (int) $this-&gt;category-&gt;create(array(
+                    'project_id' =&gt; $values['project_id'],
+                    'name' =&gt; 'Materials',
+                ));
+            }
+            <b>// Create Material Task</b>
+            $materialTaskValues = array(
+                'title' =&gt; 'Materials - ' . $values['title'],
+                'project_id' =&gt; $values['project_id'],
+                'color_id' =&gt; '',
+                'column_id' =&gt; 0,
+                'owner_id' =&gt; 0,
+                'creator_id' =&gt; $values['creator_id'],
+                'date_due' =&gt; '',
+                'description' =&gt; '',
+                'category_id' =&gt; $materialCatId,
+                'spaces' =&gt; $values['spaces'],
+                'score' =&gt; 0,
+                'swimlane_id' =&gt; $values['swimlane_id'],
+            );
+            $materialTaskId = $this-&gt;taskCreation-&gt;create($materialTaskValues);
+            <b>// Create Materials subtasks</b>
+            $materials = explode(',', $values['materials']);
+            foreach ($materials as $key =&gt; $val) {
+
+                $subTask = array(
+                    'title' =&gt; trim($val),
+                    'task_id' =&gt; $materialTaskId,
+                    'user_id' =&gt; 0,
+                    'time_estimated' =&gt; 0,
+                    'time_spent' =&gt; 0,
+                    'status' =&gt; 0,
+                );
+                $this-&gt;subtask-&gt;create($subTask);
+            }
+        }
+        unset($values['materials']);
+        $originalTask = $this-&gt;taskCreation-&gt;create($values);
+        if ($originalTask) {
+            <b>// link material task with original task</b>
+            if ($materialTaskId != 0) {
+                $this-&gt;taskLink-&gt;create($materialTaskId, $originalTask, 9);
+            }
+            $this-&gt;session-&gt;flash(t('Task created successfully.'));
+            return true;
+        } else {
+            $this-&gt;session-&gt;flashError(t('Unable to create your task.'));
+            return false;
+        }
+</pre>
+
+<blockquote>
+<p>For each Space a Task will be created with a link to a new Material task with list of materials as Subtasks.</p>
+</blockquote>
+
+<p>[^1]:you can select one or more space by holding on Ctrl key or Shift key
+[^2]:When selecting "All Spaces" option it will create tasks for all 
+<img src="http://i.imgur.com/N96sIbq.png" alt="link">
+<img src="http://i.imgur.com/gvxrwZy.png" alt="link"></p>
+
+<h4>
+<a id="board" class="anchor" href="#board" aria-hidden="true"><span class="octicon octicon-link"></span></a>Board:</h4>
+
+<p>iKan uses Kanban Board to display its Tasks and Ikan devides the board into multiple Swimlane, each swimplane contains one Construction trade
+<img src="http://i.imgur.com/OlqtEFp.png" alt="link"></p>
+
+<p><strong>clicing on Actions -&gt; Collapse Tasks will display the tasks collapsed</strong></p>
+
+<p><img src="http://i.imgur.com/ko9OzdZ.png" alt="link"></p>
+
+<p>** Code snippet for loading board by Construction Trade/Categories**</p>
+
+<pre>
+/**
+     * Show a board for a given project
+     *
+     * @access public
+     */
+    public function show()
+    {
+        $params = $this-&gt;getProjectFilters('board', 'show');
+        // ikan swimlanes becomes Construction Trade
+        $this-&gt;response-&gt;html($this-&gt;template-&gt;layout('board/private_view', array(
+            'categories_list' =&gt; $this-&gt;category-&gt;getList($params['project']['id'], false),
+            'users_list' =&gt; $this-&gt;projectPermission-&gt;getMemberList($params['project']['id'], false),
+            'swimlanes' =&gt; $this-&gt;taskFilter-&gt;search($params['filters']['search'])
+                            <b>-&gt;getBoardByTradeSwimlanes($params['project']['id']),</b>
+            'description' =&gt; $params['project']['description'],
+            'board_private_refresh_interval' =&gt; $this-&gt;config-&gt;get('board_private_refresh_interval'),
+            'board_highlight_period' =&gt; $this-&gt;config-&gt;get('board_highlight_period'),
+        ) + $params));
+    }
+    
+    public function <b>getBoardByTradeSwimlanes($project_id)</b>
+    {
+        $tasks = $this-&gt;filterByProject($project_id)-&gt;query-&gt;asc(Task::TABLE.'.position')-&gt;findAll();
+
+        <b>return $this-&gt;board-&gt;getBoardByTradeSwimlanes($project_id, 
+            function ($project_id, $column_id, $swimlane_id) use ($tasks) {
+                return array_filter($tasks, function(array $task) use ($column_id, $swimlane_id) {
+                    return $task['column_id'] == $column_id &amp;&amp; $task['category_id'] == $swimlane_id;
+                
+                });
+        });</b>
+    }
+    
+    public function <b>getBoardByTradeSwimlanes($project_id, $callback = null)</b>
+    {
+        $trades = $this-&gt;category-&gt;getAll($project_id);
+        $columns = $this-&gt;getColumns($project_id);
+        $nb_columns = count($columns);
+
+        for ($i = 0, $ilen = count($trades); $i $trades[$i]['columns'][$j]['tasks'] = $callback === null ? $this-&gt;taskFinder
+                    -&gt;getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id'])
+                     : $callback($project_id, $column_id, $trades_id);
+                $trades[$i]['columns'][$j]['nb_tasks'] = count($trades[$i]['columns'][$j]['tasks']);
+                $trades[$i]['nb_tasks'] += $trades[$i]['columns'][$j]['nb_tasks'];
+            }
+        }
+
+        return $trades;
+    }
+    
+    public function getTasksByColumnAndCategory($project_id, $column_id, $category_id)
+    {
+        return $this-&gt;getExtendedQuery()
+            -&gt;eq(Task::TABLE.'.project_id', $project_id)
+            -&gt;eq(Task::TABLE.'.column_id', $column_id)
+            -&gt;eq(Task::TABLE.'.category_id', $category_id)
+            -&gt;eq(Task::TABLE.'.is_active', Task::STATUS_OPEN)
+            -&gt;asc('tasks.position')
+            -&gt;findAll();
+    }
+</pre>
+
+<h4>
+<a id="gantt" class="anchor" href="#gantt" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gantt</h4>
+
+<p><img src="http://i.imgur.com/XrrG6Hv.png" alt="gntt"></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/hussam789/kanboard/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/hussam789/kanboard/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/hussam789/kanboard"></a> is maintained by <a href="https://github.com/hussam789">hussam789</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
 
   
   </body>
