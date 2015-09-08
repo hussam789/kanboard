@@ -19,30 +19,53 @@
     </section>
 
     <section class="main-content">
-      <ul>
-<li><a href="#support">support</a></li>
+      <h1>
+<a id="ikan" class="anchor" href="#ikan" aria-hidden="true"><span class="octicon octicon-link"></span></a>iKan</h1>
+
+<hr>
+
+<p><img src="http://s22.postimg.org/jmufttie9/ic_launcher.png" alt="ikanLogo">
+<img src="http://s22.postimg.org/jmufttie9/ic_launcher.png" alt="ikan_logo"></p>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p><strong>iKan</strong> is a Construction site managment which implements the basic principles of <a href="https://en.wikipedia.org/wiki/Lean_construction">Lean construction</a>. the purpose of the Project is to focus on Kanban methodology.</p>
+
+<h3>
+<a id="what-is-kanban" class="anchor" href="#what-is-kanban" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Kanban?</h3>
+
+<p>Kanban is a methodology originally developed by Toyota to be more efficient.</p>
+
+<p>There is only two constraints imposed by Kanban:</p>
+
+<ul>
+<li>Visualize your workflow</li>
+<li>Limit your work in progress</li>
+<li>Continuous flow</li>
+<li>Changes can be made at anytime</li>
+<li>Kanban board is persistent</li>
 </ul>
 
-<h3>
-<a id="ikan" class="anchor" href="#ikan" aria-hidden="true"><span class="octicon octicon-link"></span></a>iKan</h3>
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">index</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getUser();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">response</span><span class="pl-k">-&gt;</span>html(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>layout(<span class="pl-s"><span class="pl-pds">'</span>app/overview<span class="pl-pds">'</span></span>, <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> t(<span class="pl-s"><span class="pl-pds">'</span>Dashboard<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>project_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getProjectPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>task_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getTaskPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>subtask_paginator<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getSubtaskPaginator(<span class="pl-smi">$user</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>index<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$user</span>,</span>
+<span class="pl-s1">        )));</span>
+<span class="pl-s1">    }</span></pre></div>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.
-rs
-You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.
-rs
-You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.
-rs
-You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.
-rs
-You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<h2>
+<a id="ikan-project" class="anchor" href="#ikan-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>iKan project</h2>
 
-<h3>
-<a id="-support-or-contact" class="anchor" href="#-support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="support"></a> Support or Contact</h3>
+<p>the project contains two main apps:</p>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>1.<strong>Admin Website:</strong> </p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/hussam789/kanboard">iKan</a> is maintained by <a href="https://github.com/hussam789">hussam789</a>.</span>
