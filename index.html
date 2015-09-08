@@ -82,121 +82,119 @@
 <p>Spaces are presisted as a json string inside Projects Table, in order to display the heirarchy and to save the json, we Serialize and deSerialize the json object of this structure:</p>
 </blockquote>
 
-<p>** Load and Save Spaces Methods **</p>
+<p><strong>Load and Save Spaces Methods</strong></p>
 
-<pre><code>function load_Spaces() {
-    var sp = $("#demo").attr("data-spaces");
-    console.log('spaces:' + sp);
-    var data;
-    if (sp.length == 0) {
-        data = {name: "Spaces"};
-    } else {
-        data = JSON.parse(sp);
+<div class="highlight highlight-javascript"><pre><span class="pl-k">function</span> <span class="pl-en">load_Spaces</span>() {
+    <span class="pl-k">var</span> sp <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">"</span>#demo<span class="pl-pds">"</span></span>).attr(<span class="pl-s"><span class="pl-pds">"</span>data-spaces<span class="pl-pds">"</span></span>);
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>spaces:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> sp);
+    <span class="pl-k">var</span> data;
+    <span class="pl-k">if</span> (sp.<span class="pl-c1">length</span> <span class="pl-k">==</span> <span class="pl-c1">0</span>) {
+        data <span class="pl-k">=</span> {name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Spaces<span class="pl-pds">"</span></span>};
+    } <span class="pl-k">else</span> {
+        data <span class="pl-k">=</span> <span class="pl-c1">JSON</span>.<span class="pl-c1">parse</span>(sp);
     }
 }
 
-$("#save").click(function () {
-        console.log('save' + JSON.stringify(demo.$data.treeData));
+$(<span class="pl-s"><span class="pl-pds">"</span>#save<span class="pl-pds">"</span></span>).<span class="pl-c1">click</span>(<span class="pl-k">function</span> () {
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>save<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">JSON</span>.stringify(demo.$data.treeData));
         $.ajax({
-            cache: false,
-            url: $("#demo").attr("data-save-url"),
-            contentType: "application/json",
-            type: "POST",
-            processData: false,
-            data: JSON.stringify({
-                "project_id": $("#demo").attr("data-project-id"),
-                "spaces":JSON.stringify(demo.$data.treeData)
+            cache<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+            url<span class="pl-k">:</span> $(<span class="pl-s"><span class="pl-pds">"</span>#demo<span class="pl-pds">"</span></span>).attr(<span class="pl-s"><span class="pl-pds">"</span>data-save-url<span class="pl-pds">"</span></span>),
+            contentType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>application/json<span class="pl-pds">"</span></span>,
+            type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span>,
+            processData<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+            data<span class="pl-k">:</span> <span class="pl-c1">JSON</span>.stringify({
+                <span class="pl-s"><span class="pl-pds">"</span>project_id<span class="pl-pds">"</span></span><span class="pl-k">:</span> $(<span class="pl-s"><span class="pl-pds">"</span>#demo<span class="pl-pds">"</span></span>).attr(<span class="pl-s"><span class="pl-pds">"</span>data-project-id<span class="pl-pds">"</span></span>),
+                <span class="pl-s"><span class="pl-pds">"</span>spaces<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">JSON</span>.stringify(demo.$data.treeData)
             }),
-            success: function(spaces) {
-                //data = spaces;
-                alert('Saved spaces')
-                console.log('data saved');
+            <span class="pl-en">success</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">spaces</span>) {
+                <span class="pl-c">//data = spaces;</span>
+                <span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">'</span>Saved spaces<span class="pl-pds">'</span></span>)
+                <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>data saved<span class="pl-pds">'</span></span>);
             }
         });
-    });
-</code></pre>
+    });</pre></div>
 
-<p>** Spaces Data Object **</p>
+<p><strong>Spaces Data Object</strong></p>
 
-<pre><code>{
-  "name": "Spaces",
-  "children": [
+<div class="highlight highlight-javascript"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Spaces<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
     {
-      "name": "Level -1 - Parking"
+      <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Level -1 - Parking<span class="pl-pds">"</span></span>
     },
     {
-      "name": "Level 0 - Lobby"
+      <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Level 0 - Lobby<span class="pl-pds">"</span></span>
     },
     {
-      "name": "@Level 1 (L1)",
-      "children": [
+      <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>@Level 1 (L1)<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
         {
-          "name": "NE 3 Rooms Apt (NE3RMs)",
-          "children": [
+          <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>NE 3 Rooms Apt (NE3RMs)<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
             {
-              "name": "Living Room"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Living Room<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Master Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Master Bedroom<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom<span class="pl-pds">"</span></span>
             }
           ]
         },
         {
-          "name": "NW 4 Rooms Apt (NW4RMs)",
-          "children": [
+          <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>NW 4 Rooms Apt (NW4RMs)<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
             {
-              "name": "Living Room"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Living Room<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Master Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Master Bedroom<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom A"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom A<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom B"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom B<span class="pl-pds">"</span></span>
             }
           ]
         },
         {
-          "name": "SW 4 Rooms Apt (SW4RMs)",
-          "children": [
+          <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>SW 4 Rooms Apt (SW4RMs)<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
             {
-              "name": "Living Room"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Living Room<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Master Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Master Bedroom<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom A"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom A<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom B"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom B<span class="pl-pds">"</span></span>
             }
           ]
         },
         {
-          "name": "SE 3 Rooms Apt (SE3RMs)",
-          "children": [
+          <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>SE 3 Rooms Apt (SE3RMs)<span class="pl-pds">"</span></span>,
+          <span class="pl-s"><span class="pl-pds">"</span>children<span class="pl-pds">"</span></span><span class="pl-k">:</span> [
             {
-              "name": "Living Room"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Living Room<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Master Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Master Bedroom<span class="pl-pds">"</span></span>
             },
             {
-              "name": "Children Bedroom"
+              <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>Children Bedroom<span class="pl-pds">"</span></span>
             }
           ]
         }
       ]
     }
   ]
-}
-</code></pre>
+}</pre></div>
 
 <h4>
 <a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links:</h4>
@@ -220,174 +218,172 @@ $("#save").click(function () {
 <li>title</li>
 <li>Description (Markdown Text)</li>
 <li>Choose Assignee</li>
-<li>Selecting Spaces that needs to create Tasks (one task per space) [^1] , [^2]</li>
+<li>Selecting Spaces that needs to create Tasks (one task per space)</li>
 <li>Materials should be added with comma separation, example : Asphalt, Sand, Water</li>
 <li>Color, Time Estimate, Due Date</li>
 </ol>
 
-<p><img src="http://i.imgur.com/aPbQ1XW.png" alt="new_task"></p>
-
-<p>** Parsing Spaces **</p>
-
-<p>Parse Spaces Json and getting list of Spaces with Abbreviated Path (handeling @ signs, Trimming spaces), using ** Recursive method **</p>
-
-<pre><code>    function recursive_spaces_walkthrough ($array, $level, &amp;$new_array, $path){
-        if (empty($array)) {
-            return;
-        }
-        $aabreviation = '';
-        foreach($array as $key =&gt; $value){
-            //If $value is an array.
-            if(is_array($value)){
-                // walkthrough its children
-                $this-&gt;recursive($value, $level + 1, $new_array, $path . $aabreviation);
-            } else {
-                if ($level == 0) {
-                    // Default Space
-                    $new_array[$value] = $value;
-                    continue;
-                }
-                //It is not an array, so print it out.
-               //Check if Space name has Abbreviation in Parentheses ().
-               if (preg_match('/\(([A-Za-z0-9 ]+?)\)/', $value, $matches)) {
-                    $aabreviation = $level == 1 ? trim($matches[1]) : '.' . trim($matches[1]);
-                } else {
-                    $aabreviation = $level == 1 ? trim(str_replace('@','',$value)) : '.' . trim(str_replace('@','',$value));
-                }
-
-                if ($value[0] != '@') {
-                    $newString = $path . '.' . trim(preg_replace('/\(([^()]*+|(?R))*\)\s*/', '', $value));
-                    $newString = ltrim($newString, '.');
-                    $new_array[$newString] = $newString;
-                }
-            }
-        }
-    }
-</code></pre>
-
-<p>** Saving new Task **</p>
-
-<pre>
-/**
-     * Validate and save a new task
-     *
-     * @access public
-     */
-    public function save()
-    {
-        $project = $this-&gt;getProject();
-        $values = $this-&gt;request-&gt;getValues();
-
-        list($valid, $errors) = $this-&gt;taskValidator-&gt;validateCreation($values);
-
-        if ($valid) {
-            // ikan
-            // if "all spaces" is selected: create tasks for all the spaces
-            if (in_array(self::ALL_SPACES, $values['spaces'])) {
-
-                $space_list = array();
-             $this-&gt;taskFinder-&gt;recursive(json_decode($this-&gt;project-&gt;getSpaces($project['id']), true),
-              0, $space_list, "");
-                if (count($space_list) == 0) {
-                    $this-&gt;createSingleTask($values, $project);
-                } else {
-                    $output = print_r($space_list,1);
-                    error_log($output);
-                    foreach ($space_list as $space_name) {
-                        $values['spaces'] = $space_name;
-                        $temp_title = $values['title'];
-                        $values['title'] .= ' - ' . str_replace('_', '', $space_name);
-                        $this-&gt;createSingleTask($values, $project);
-                        $values['title'] = $temp_title;
-                    }
-                }
-            } else {<b>
-            // for each one of the selected spaces create Task
-                foreach ($values['spaces'] as $selectedOption) {
-                    $values['spaces'] = $selectedOption;
-                    $temp_title = $values['title'];
-                    $values['title'] .= ' - ' . $selectedOption;
-                    $this-&gt;createSingleTask($values, $project);
-                    $values['title'] = $temp_title;
-                }</b>
-            }
-            .
-            .
-            .
-        }
-        $this-&gt;create($values, $errors);
-    }
-</pre>
-
-<pre>
-private function createSingleTask($values, $project)
-    {
-        $materialTaskId = 0;
-        <b>// if the task requires materials</b>
-        if (!empty($values['materials'])) {
-            <b>// get Materials Category id</b>
-            global $materialCatId;
-            $materialCatId = $this-&gt;category-&gt;getIdByName($values['project_id'], 'Materials');
-            if ($materialCatId == 0 ) {
-                // if not exist create Material Category
-                $materialCatId = (int) $this-&gt;category-&gt;create(array(
-                    'project_id' =&gt; $values['project_id'],
-                    'name' =&gt; 'Materials',
-                ));
-            }
-            <b>// Create Material Task</b>
-            $materialTaskValues = array(
-                'title' =&gt; 'Materials - ' . $values['title'],
-                'project_id' =&gt; $values['project_id'],
-                'color_id' =&gt; '',
-                'column_id' =&gt; 0,
-                'owner_id' =&gt; 0,
-                'creator_id' =&gt; $values['creator_id'],
-                'date_due' =&gt; '',
-                'description' =&gt; '',
-                'category_id' =&gt; $materialCatId,
-                'spaces' =&gt; $values['spaces'],
-                'score' =&gt; 0,
-                'swimlane_id' =&gt; $values['swimlane_id'],
-            );
-            $materialTaskId = $this-&gt;taskCreation-&gt;create($materialTaskValues);
-            <b>// Create Materials subtasks</b>
-            $materials = explode(',', $values['materials']);
-            foreach ($materials as $key =&gt; $val) {
-
-                $subTask = array(
-                    'title' =&gt; trim($val),
-                    'task_id' =&gt; $materialTaskId,
-                    'user_id' =&gt; 0,
-                    'time_estimated' =&gt; 0,
-                    'time_spent' =&gt; 0,
-                    'status' =&gt; 0,
-                );
-                $this-&gt;subtask-&gt;create($subTask);
-            }
-        }
-        unset($values['materials']);
-        $originalTask = $this-&gt;taskCreation-&gt;create($values);
-        if ($originalTask) {
-            <b>// link material task with original task</b>
-            if ($materialTaskId != 0) {
-                $this-&gt;taskLink-&gt;create($materialTaskId, $originalTask, 9);
-            }
-            $this-&gt;session-&gt;flash(t('Task created successfully.'));
-            return true;
-        } else {
-            $this-&gt;session-&gt;flashError(t('Unable to create your task.'));
-            return false;
-        }
-</pre>
-
 <blockquote>
 <p>For each Space a Task will be created with a link to a new Material task with list of materials as Subtasks.</p>
+
+<ol>
+<li> you can select one or more space by holding on Ctrl key or Shift key</li>
+<li> When selecting "All Spaces" option it will create tasks for all </li>
+</ol>
 </blockquote>
 
-<p>[^1]:you can select one or more space by holding on Ctrl key or Shift key
-[^2]:When selecting "All Spaces" option it will create tasks for all 
-<img src="http://i.imgur.com/N96sIbq.png" alt="link">
+<p><img src="http://i.imgur.com/aPbQ1XW.png" alt="new_task"></p>
+
+<p><strong>Parsing Spaces</strong></p>
+
+<p>Parse Spaces Json and getting list of Spaces with Abbreviated Path (handeling @ signs, Trimming spaces), using <strong>Recursive method</strong></p>
+
+<div class="highlight highlight-javascript"><pre>    <span class="pl-k">function</span> <span class="pl-en">recursive_spaces_walkthrough</span> (<span class="pl-smi">$array</span>, <span class="pl-smi">$level</span>, &amp;<span class="pl-smi">$new_array</span>, <span class="pl-smi">$path</span>){
+        <span class="pl-k">if</span> (empty($array)) {
+            <span class="pl-k">return</span>;
+        }
+        $aabreviation <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>;
+        <span class="pl-en">foreach</span>(<span class="pl-smi">$array</span> <span class="pl-smi">as</span> <span class="pl-smi">$key</span> <span class="pl-k">=</span>&gt; <span class="pl-smi">$value</span>){
+            <span class="pl-c">//If $value is an array.</span>
+            <span class="pl-k">if</span>(is_array($value)){
+                <span class="pl-c">// walkthrough its children</span>
+                $<span class="pl-v">this</span><span class="pl-k">-&gt;</span>recursive($value, $level <span class="pl-k">+</span> <span class="pl-c1">1</span>, $new_array, $path . $aabreviation);
+            } <span class="pl-k">else</span> {
+                <span class="pl-k">if</span> ($level <span class="pl-k">==</span> <span class="pl-c1">0</span>) {
+                    <span class="pl-c">// Default Space</span>
+                    $new_array[$value] <span class="pl-k">=</span> $value;
+                    <span class="pl-k">continue</span>;
+                }
+                <span class="pl-c">//It is not an array, so print it out.</span>
+               <span class="pl-c">//Check if Space name has Abbreviation in Parentheses ().</span>
+               <span class="pl-k">if</span> (preg_match(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-cce">\(</span>([A-Za-z0-9 ]+?)<span class="pl-cce">\)</span>/<span class="pl-pds">'</span></span>, $value, $matches)) {
+                    $aabreviation <span class="pl-k">=</span> $level <span class="pl-k">==</span> <span class="pl-c1">1</span> <span class="pl-k">?</span> trim($matches[<span class="pl-c1">1</span>]) <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span> . trim($matches[<span class="pl-c1">1</span>]);
+                } <span class="pl-k">else</span> {
+                    $aabreviation <span class="pl-k">=</span> $level <span class="pl-k">==</span> <span class="pl-c1">1</span> <span class="pl-k">?</span> trim(str_replace(<span class="pl-s"><span class="pl-pds">'</span>@<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,$value)) <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span> . trim(str_replace(<span class="pl-s"><span class="pl-pds">'</span>@<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,$value));
+                }
+
+                <span class="pl-k">if</span> ($value[<span class="pl-c1">0</span>] <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">'</span>@<span class="pl-pds">'</span></span>) {
+                    $newString <span class="pl-k">=</span> $path . <span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span> . trim(preg_replace(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-cce">\(</span>([^()]*+|(?R))*<span class="pl-cce">\)\s</span>*/<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, $value));
+                    $newString <span class="pl-k">=</span> ltrim($newString, <span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>);
+                    $new_array[$newString] <span class="pl-k">=</span> $newString;
+                }
+            }
+        }
+    }</pre></div>
+
+<p><strong>Saving new Task</strong></p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * Validate and save a new task</span></span>
+<span class="pl-s1"><span class="pl-c">     *</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@access</span> <span class="pl-k">public</span></span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">save</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$project</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getProject();</span>
+<span class="pl-s1">        <span class="pl-smi">$values</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">request</span><span class="pl-k">-&gt;</span>getValues();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-c1">list</span>(<span class="pl-smi">$valid</span>, <span class="pl-smi">$errors</span>) <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskValidator</span><span class="pl-k">-&gt;</span>validateCreation(<span class="pl-smi">$values</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$valid</span>) {</span>
+<span class="pl-s1">            <span class="pl-c">// ikan</span></span>
+<span class="pl-s1">            <span class="pl-c">// if "all spaces" is selected: create tasks for all the spaces</span></span>
+<span class="pl-s1">            <span class="pl-k">if</span> (<span class="pl-c1">in_array</span>(<span class="pl-k">self</span><span class="pl-k">::</span><span class="pl-c1">ALL_SPACES</span>, <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span>])) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-smi">$space_list</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>();</span>
+<span class="pl-s1">             <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskFinder</span><span class="pl-k">-&gt;</span>recursive(<span class="pl-c1">json_decode</span>(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">project</span><span class="pl-k">-&gt;</span>getSpaces(<span class="pl-smi">$project</span>[<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>]), <span class="pl-c1">true</span>),</span>
+<span class="pl-s1">              <span class="pl-c1">0</span>, <span class="pl-smi">$space_list</span>, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">                <span class="pl-k">if</span> (<span class="pl-c1">count</span>(<span class="pl-smi">$space_list</span>) <span class="pl-k">==</span> <span class="pl-c1">0</span>) {</span>
+<span class="pl-s1">                    <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>createSingleTask(<span class="pl-smi">$values</span>, <span class="pl-smi">$project</span>);</span>
+<span class="pl-s1">                } <span class="pl-k">else</span> {</span>
+<span class="pl-s1">                    <span class="pl-smi">$output</span> <span class="pl-k">=</span> <span class="pl-c1">print_r</span>(<span class="pl-smi">$space_list</span>,<span class="pl-c1">1</span>);</span>
+<span class="pl-s1">                    <span class="pl-c1">error_log</span>(<span class="pl-smi">$output</span>);</span>
+<span class="pl-s1">                    <span class="pl-k">foreach</span> (<span class="pl-smi">$space_list</span> <span class="pl-k">as</span> <span class="pl-smi">$space_name</span>) {</span>
+<span class="pl-s1">                        <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$space_name</span>;</span>
+<span class="pl-s1">                        <span class="pl-smi">$temp_title</span> <span class="pl-k">=</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1">                        <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>] <span class="pl-k">.=</span> <span class="pl-s"><span class="pl-pds">'</span> - <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-c1">str_replace</span>(<span class="pl-s"><span class="pl-pds">'</span>_<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-smi">$space_name</span>);</span>
+<span class="pl-s1">                        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>createSingleTask(<span class="pl-smi">$values</span>, <span class="pl-smi">$project</span>);</span>
+<span class="pl-s1">                        <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$temp_title</span>;</span>
+<span class="pl-s1">                    }</span>
+<span class="pl-s1">                }</span>
+<span class="pl-s1">            } <span class="pl-k">else</span> {<span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">            <span class="pl-c">// for each one of the selected spaces create Task</span></span>
+<span class="pl-s1">                <span class="pl-k">foreach</span> (<span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span>] <span class="pl-k">as</span> <span class="pl-smi">$selectedOption</span>) {</span>
+<span class="pl-s1">                    <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$selectedOption</span>;</span>
+<span class="pl-s1">                    <span class="pl-smi">$temp_title</span> <span class="pl-k">=</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1">                    <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>] <span class="pl-k">.=</span> <span class="pl-s"><span class="pl-pds">'</span> - <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$selectedOption</span>;</span>
+<span class="pl-s1">                    <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>createSingleTask(<span class="pl-smi">$values</span>, <span class="pl-smi">$project</span>);</span>
+<span class="pl-s1">                    <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$temp_title</span>;</span>
+<span class="pl-s1">                }<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-k">.</span></span>
+<span class="pl-s1">            <span class="pl-k">.</span></span>
+<span class="pl-s1">            <span class="pl-k">.</span></span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>create(<span class="pl-smi">$values</span>, <span class="pl-smi">$errors</span>);</span>
+<span class="pl-s1">    }</span></pre></div>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">private</span> <span class="pl-k">function</span> <span class="pl-en">createSingleTask</span>(<span class="pl-smi">$values</span>, <span class="pl-smi">$project</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$materialTaskId</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>;</span>
+<span class="pl-s1">        <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-c">// if the task requires materials&lt;/b&gt;</span></span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-k">!</span><span class="pl-c1">empty</span>(<span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>materials<span class="pl-pds">'</span></span>])) {</span>
+<span class="pl-s1">            <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-c">// get Materials Category id&lt;/b&gt;</span></span>
+<span class="pl-s1">            <span class="pl-k">global</span> <span class="pl-smi">$materialCatId</span>;</span>
+<span class="pl-s1">            <span class="pl-smi">$materialCatId</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">category</span><span class="pl-k">-&gt;</span>getIdByName(<span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>project_id<span class="pl-pds">'</span></span>], <span class="pl-s"><span class="pl-pds">'</span>Materials<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">            <span class="pl-k">if</span> (<span class="pl-smi">$materialCatId</span> <span class="pl-k">==</span> <span class="pl-c1">0</span> ) {</span>
+<span class="pl-s1">                <span class="pl-c">// if not exist create Material Category</span></span>
+<span class="pl-s1">                <span class="pl-smi">$materialCatId</span> <span class="pl-k">=</span> (<span class="pl-k">int</span>) <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">category</span><span class="pl-k">-&gt;</span>create(<span class="pl-c1">array</span>(</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>project_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>project_id<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Materials<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">                ));</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-c">// Create Material Task&lt;/b&gt;</span></span>
+<span class="pl-s1">            <span class="pl-smi">$materialTaskValues</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Materials - <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>project_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>project_id<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>color_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>column_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>owner_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>creator_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>creator_id<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>date_due<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>category_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$materialCatId</span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>spaces<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>score<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>swimlane_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>swimlane_id<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">            );</span>
+<span class="pl-s1">            <span class="pl-smi">$materialTaskId</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskCreation</span><span class="pl-k">-&gt;</span>create(<span class="pl-smi">$materialTaskValues</span>);</span>
+<span class="pl-s1">            <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-c">// Create Materials subtasks&lt;/b&gt;</span></span>
+<span class="pl-s1">            <span class="pl-smi">$materials</span> <span class="pl-k">=</span> <span class="pl-c1">explode</span>(<span class="pl-s"><span class="pl-pds">'</span>,<span class="pl-pds">'</span></span>, <span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>materials<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1">            <span class="pl-k">foreach</span> (<span class="pl-smi">$materials</span> <span class="pl-k">as</span> <span class="pl-smi">$key</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$val</span>) {</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-smi">$subTask</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>title<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">trim</span>(<span class="pl-smi">$val</span>),</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>task_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$materialTaskId</span>,</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>user_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>time_estimated<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>time_spent<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                    <span class="pl-s"><span class="pl-pds">'</span>status<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">0</span>,</span>
+<span class="pl-s1">                );</span>
+<span class="pl-s1">                <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">subtask</span><span class="pl-k">-&gt;</span>create(<span class="pl-smi">$subTask</span>);</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">        <span class="pl-c1">unset</span>(<span class="pl-smi">$values</span>[<span class="pl-s"><span class="pl-pds">'</span>materials<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1">        <span class="pl-smi">$originalTask</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskCreation</span><span class="pl-k">-&gt;</span>create(<span class="pl-smi">$values</span>);</span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$originalTask</span>) {</span>
+<span class="pl-s1">            <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-c">// link material task with original task&lt;/b&gt;</span></span>
+<span class="pl-s1">            <span class="pl-k">if</span> (<span class="pl-smi">$materialTaskId</span> <span class="pl-k">!</span><span class="pl-k">=</span> <span class="pl-c1">0</span>) {</span>
+<span class="pl-s1">                <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskLink</span><span class="pl-k">-&gt;</span>create(<span class="pl-smi">$materialTaskId</span>, <span class="pl-smi">$originalTask</span>, <span class="pl-c1">9</span>);</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">session</span><span class="pl-k">-&gt;</span>flash(t(<span class="pl-s"><span class="pl-pds">'</span>Task created successfully.<span class="pl-pds">'</span></span>));</span>
+<span class="pl-s1">            <span class="pl-k">return</span> <span class="pl-c1">true</span>;</span>
+<span class="pl-s1">        } <span class="pl-k">else</span> {</span>
+<span class="pl-s1">            <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">session</span><span class="pl-k">-&gt;</span>flashError(t(<span class="pl-s"><span class="pl-pds">'</span>Unable to create your task.<span class="pl-pds">'</span></span>));</span>
+<span class="pl-s1">            <span class="pl-k">return</span> <span class="pl-c1">false</span>;</span>
+<span class="pl-s1">        }</span></pre></div>
+
+<p><img src="http://i.imgur.com/N96sIbq.png" alt="link">
 <img src="http://i.imgur.com/gvxrwZy.png" alt="link"></p>
 
 <h4>
@@ -402,68 +398,75 @@ private function createSingleTask($values, $project)
 
 <p><strong>Code snippet for loading board by Construction Trade/Categories</strong></p>
 
-<pre>
-/**
-     * Show a board for a given project
-     *
-     * @access public
-     */
-    public function show()
-    {
-        $params = $this-&gt;getProjectFilters('board', 'show');
-        // ikan swimlanes becomes Construction Trade
-        $this-&gt;response-&gt;html($this-&gt;template-&gt;layout('board/private_view', array(
-            'categories_list' =&gt; $this-&gt;category-&gt;getList($params['project']['id'], false),
-            'users_list' =&gt; $this-&gt;projectPermission-&gt;getMemberList($params['project']['id'], false),
-            'swimlanes' =&gt; $this-&gt;taskFilter-&gt;search($params['filters']['search'])
-                            <b>-&gt;getBoardByTradeSwimlanes($params['project']['id']),</b>
-            'description' =&gt; $params['project']['description'],
-            'board_private_refresh_interval' =&gt; $this-&gt;config-&gt;get('board_private_refresh_interval'),
-            'board_highlight_period' =&gt; $this-&gt;config-&gt;get('board_highlight_period'),
-        ) + $params));
-    }
-    
-    public function <b>getBoardByTradeSwimlanes($project_id)</b>
-    {
-        $tasks = $this-&gt;filterByProject($project_id)-&gt;query-&gt;asc(Task::TABLE.'.position')-&gt;findAll();
-
-        <b>return $this-&gt;board-&gt;getBoardByTradeSwimlanes($project_id, 
-            function ($project_id, $column_id, $swimlane_id) use ($tasks) {
-                return array_filter($tasks, function(array $task) use ($column_id, $swimlane_id) {
-                    return $task['column_id'] == $column_id &amp;&amp; $task['category_id'] == $swimlane_id;
-                
-                });
-        });</b>
-    }
-    
-    public function <b>getBoardByTradeSwimlanes($project_id, $callback = null)</b>
-    {
-        $trades = $this-&gt;category-&gt;getAll($project_id);
-        $columns = $this-&gt;getColumns($project_id);
-        $nb_columns = count($columns);
-
-        for ($i = 0, $ilen = count($trades); $i $trades[$i]['columns'][$j]['tasks'] = $callback === null ? $this-&gt;taskFinder
-                    -&gt;getTasksByColumnAndCategory($project_id, $columns[$j]['id'], $trades[$i]['id'])
-                     : $callback($project_id, $column_id, $trades_id);
-                $trades[$i]['columns'][$j]['nb_tasks'] = count($trades[$i]['columns'][$j]['tasks']);
-                $trades[$i]['nb_tasks'] += $trades[$i]['columns'][$j]['nb_tasks'];
-            }
-        }
-
-        return $trades;
-    }
-    
-    public function getTasksByColumnAndCategory($project_id, $column_id, $category_id)
-    {
-        return $this-&gt;getExtendedQuery()
-            -&gt;eq(Task::TABLE.'.project_id', $project_id)
-            -&gt;eq(Task::TABLE.'.column_id', $column_id)
-            -&gt;eq(Task::TABLE.'.category_id', $category_id)
-            -&gt;eq(Task::TABLE.'.is_active', Task::STATUS_OPEN)
-            -&gt;asc('tasks.position')
-            -&gt;findAll();
-    }
-</pre>
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * Show a board for a given project</span></span>
+<span class="pl-s1"><span class="pl-c">     *</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@access</span> <span class="pl-k">public</span></span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">show</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getProjectFilters(<span class="pl-s"><span class="pl-pds">'</span>board<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>show<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        <span class="pl-c">// ikan swimlanes becomes Construction Trade</span></span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">response</span><span class="pl-k">-&gt;</span>html(<span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">template</span><span class="pl-k">-&gt;</span>layout(<span class="pl-s"><span class="pl-pds">'</span>board/private_view<span class="pl-pds">'</span></span>, <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>categories_list<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">category</span><span class="pl-k">-&gt;</span>getList(<span class="pl-smi">$params</span>[<span class="pl-s"><span class="pl-pds">'</span>project<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-c1">false</span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>users_list<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">projectPermission</span><span class="pl-k">-&gt;</span>getMemberList(<span class="pl-smi">$params</span>[<span class="pl-s"><span class="pl-pds">'</span>project<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-c1">false</span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>swimlanes<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskFilter</span><span class="pl-k">-&gt;</span>search(<span class="pl-smi">$params</span>[<span class="pl-s"><span class="pl-pds">'</span>filters<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>search<span class="pl-pds">'</span></span>])</span>
+<span class="pl-s1">                            <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-k">-&gt;</span>getBoardByTradeSwimlanes(<span class="pl-smi">$params</span>[<span class="pl-s"><span class="pl-pds">'</span>project<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>]),<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$params</span>[<span class="pl-s"><span class="pl-pds">'</span>project<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>board_private_refresh_interval<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>board_private_refresh_interval<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>board_highlight_period<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">config</span><span class="pl-k">-&gt;</span>get(<span class="pl-s"><span class="pl-pds">'</span>board_highlight_period<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">        ) <span class="pl-k">+</span> <span class="pl-smi">$params</span>));</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span>getBoardByTradeSwimlanes(<span class="pl-smi">$project_id</span>)<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$tasks</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>filterByProject(<span class="pl-smi">$project_id</span>)<span class="pl-k">-&gt;</span><span class="pl-smi">query</span><span class="pl-k">-&gt;</span>asc(<span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">TABLE</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>.position<span class="pl-pds">'</span></span>)<span class="pl-k">-&gt;</span>findAll();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-k">return</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">board</span><span class="pl-k">-&gt;</span>getBoardByTradeSwimlanes(<span class="pl-smi">$project_id</span>, </span>
+<span class="pl-s1">            <span class="pl-k">function</span> (<span class="pl-smi">$project_id</span>, <span class="pl-smi">$column_id</span>, <span class="pl-smi">$swimlane_id</span>) <span class="pl-k">use</span> (<span class="pl-smi">$tasks</span>) {</span>
+<span class="pl-s1">                <span class="pl-k">return</span> <span class="pl-c1">array_filter</span>(<span class="pl-smi">$tasks</span>, <span class="pl-k">function</span>(<span class="pl-k">array</span> <span class="pl-smi">$task</span>) <span class="pl-k">use</span> (<span class="pl-smi">$column_id</span>, <span class="pl-smi">$swimlane_id</span>) {</span>
+<span class="pl-s1">                    <span class="pl-k">return</span> <span class="pl-smi">$task</span>[<span class="pl-s"><span class="pl-pds">'</span>column_id<span class="pl-pds">'</span></span>] <span class="pl-k">==</span> <span class="pl-smi">$column_id</span> <span class="pl-k">&amp;&amp;</span> <span class="pl-smi">$task</span>[<span class="pl-s"><span class="pl-pds">'</span>category_id<span class="pl-pds">'</span></span>] <span class="pl-k">==</span> <span class="pl-smi">$swimlane_id</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                });</span>
+<span class="pl-s1">        });<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span>getBoardByTradeSwimlanes(<span class="pl-smi">$project_id</span>, <span class="pl-smi">$callback</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>)<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$trades</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">category</span><span class="pl-k">-&gt;</span>getAll(<span class="pl-smi">$project_id</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$columns</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getColumns(<span class="pl-smi">$project_id</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$nb_columns</span> <span class="pl-k">=</span> <span class="pl-c1">count</span>(<span class="pl-smi">$columns</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">for</span> (<span class="pl-smi">$i</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>, <span class="pl-smi">$ilen</span> <span class="pl-k">=</span> <span class="pl-c1">count</span>(<span class="pl-smi">$trades</span>); <span class="pl-smi">$i</span> <span class="pl-k">&lt;</span> <span class="pl-smi">$ilen</span>; <span class="pl-smi">$i</span><span class="pl-k">++</span>) {</span>
+<span class="pl-s1">            <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>columns<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$columns</span>;</span>
+<span class="pl-s1">            <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>nb_columns<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$nb_columns</span>;</span>
+<span class="pl-s1">            <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>nb_tasks<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-c1">0</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">            <span class="pl-k">for</span> (<span class="pl-smi">$j</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>; <span class="pl-smi">$j</span> <span class="pl-k">&lt;</span> <span class="pl-smi">$nb_columns</span>; <span class="pl-smi">$j</span><span class="pl-k">++</span>) {</span>
+<span class="pl-s1">                <span class="pl-smi">$column_id</span> <span class="pl-k">=</span> <span class="pl-smi">$columns</span>[<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1">                <span class="pl-smi">$trades_id</span> <span class="pl-k">=</span> <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-k">&lt;</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span><span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>columns<span class="pl-pds">'</span></span>][<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>tasks<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-smi">$callback</span> <span class="pl-k">===</span> <span class="pl-c1">null</span> ? <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">taskFinder</span></span>
+<span class="pl-s1">                    <span class="pl-k">-&gt;</span>getTasksByColumnAndCategory(<span class="pl-smi">$project_id</span>, <span class="pl-smi">$columns</span>[<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>], <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>])</span>
+<span class="pl-s1">                     : $<span class="pl-smi">callback</span>(<span class="pl-smi">$project_id</span>, <span class="pl-smi">$column_id</span>, <span class="pl-smi">$trades_id</span>);<span class="pl-k">&lt;</span><span class="pl-k">/</span><span class="pl-c1">b</span><span class="pl-k">&gt;</span></span>
+<span class="pl-s1">                <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>columns<span class="pl-pds">'</span></span>][<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>nb_tasks<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-c1">count</span>(<span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>columns<span class="pl-pds">'</span></span>][<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>tasks<span class="pl-pds">'</span></span>]);</span>
+<span class="pl-s1">                <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>nb_tasks<span class="pl-pds">'</span></span>] <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-smi">$trades</span>[<span class="pl-smi">$i</span>][<span class="pl-s"><span class="pl-pds">'</span>columns<span class="pl-pds">'</span></span>][<span class="pl-smi">$j</span>][<span class="pl-s"><span class="pl-pds">'</span>nb_tasks<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-smi">$trades</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">getTasksByColumnAndCategory</span>(<span class="pl-smi">$project_id</span>, <span class="pl-smi">$column_id</span>, <span class="pl-smi">$category_id</span>)</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>getExtendedQuery()</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>eq(<span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">TABLE</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>.project_id<span class="pl-pds">'</span></span>, <span class="pl-smi">$project_id</span>)</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>eq(<span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">TABLE</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>.column_id<span class="pl-pds">'</span></span>, <span class="pl-smi">$column_id</span>)</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>eq(<span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">TABLE</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>.category_id<span class="pl-pds">'</span></span>, <span class="pl-smi">$category_id</span>)</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>eq(<span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">TABLE</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span>.is_active<span class="pl-pds">'</span></span>, <span class="pl-c1">Task</span><span class="pl-k">::</span><span class="pl-c1">STATUS_OPEN</span>)</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>asc(<span class="pl-s"><span class="pl-pds">'</span>tasks.position<span class="pl-pds">'</span></span>)</span>
+<span class="pl-s1">            <span class="pl-k">-&gt;</span>findAll();</span>
+<span class="pl-s1">    }</span></pre></div>
 
 <h4>
 <a id="gantt" class="anchor" href="#gantt" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gantt</h4>
