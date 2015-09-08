@@ -20,7 +20,9 @@
             <ul>
                 <?= $this->url->link(t('Edit'), 'link', 'edit', array('link_id' => $link['id'])) ?>
                 <?= t('or') ?>
+        <?php if ($link['id'] != 9 && $link['id'] != 10): ?>
                 <?= $this->url->link(t('Remove'), 'link', 'confirm', array('link_id' => $link['id'])) ?>
+                <?php endif ?>
             </ul>
         </td>
     </tr>
